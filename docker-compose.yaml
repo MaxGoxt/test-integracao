@@ -1,0 +1,8 @@
+services:
+  app:
+    image: eclipse-temurin:21
+    working_dir: /app
+    volumes:
+      - .:/app
+    command: "tail -f /dev/null"
+    

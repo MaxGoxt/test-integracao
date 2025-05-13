@@ -22,6 +22,10 @@ public class Carro {
     private double quilometragem;
     private boolean ligado;
 
+    public static void main(String[] args) {
+        System.out.println("Carro.java");
+    }
+
     public Carro(String modelo, int ano, String cor, String placa, double quilometragem) {
         this.modelo = modelo;
         this.ano = ano;
