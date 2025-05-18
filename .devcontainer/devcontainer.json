@@ -1,0 +1,18 @@
+{
+  "name": "Java 21 Maven Dev Container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/app",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven"
+      ]
+    }
+  },
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash"
+  },
+  "postCreateCommand": "apt-get update && apt-get install -y maven"
+}
