@@ -1,5 +1,7 @@
 package max.carol;
 
+import java.util.List;
+
 public class Carro {
     /*
      * 1. Carro
@@ -23,7 +25,7 @@ public class Carro {
     private boolean ligado;
 
     public static void main(String[] args) {
-        System.out.println("Carro.java oooiiii");
+        System.out.println("Carro.java");
     }
 
     public Carro(String modelo, int ano, String cor, String placa, double quilometragem) {
@@ -100,6 +102,31 @@ public class Carro {
                 ", quilometragem=" + quilometragem +
                 ", ligado=" + ligado +
                 '}';
+    }
+     public String[] getServicosPendentes() {
+        return new String[]{"troca de óleo", "revisão dos freios"};
+    }
+
+    public List<String> getManutencoesRecentes() {
+        return List.of("troca de óleo", "alinhamento");
+    }
+
+    public String getManualUsuario() {
+        return "1. Ligue o carro\n2. Dirija com segurança";
+    }
+
+    public Carro getProximoCarro() {
+        return null; // simula ausência de próximo carro
+    }
+
+    public void acelerarNegativo() {
+        throw new IllegalArgumentException("Velocidade não pode ser negativa!");
+    }
+
+    public void operacaoDemorada() {
+        try {
+            Thread.sleep(2000); // simula operação lenta
+        } catch (InterruptedException ignored) {}
     }
 
 }

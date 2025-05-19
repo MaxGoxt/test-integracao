@@ -6,18 +6,24 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CarroTest {
 
+    Carro carro = new Carro("volkswagen", 2000, "azul", "123abc", 3500);
+
     @Test
-    void testSoma() {
-        assertEquals(4, 2 + 2);
+    public void testLigar() {
+        carro.ligar();
+        assertEquals(true, carro.isLigado());
     }
 
     @Test
-    void testErro() {
-        assertEquals(8, 2 + 2);
+    public void testDesligar() {
+        carro.desligar();
+        assertEquals(false, carro.isLigado());
     }
-    
+
     @Test
-    void testExemplo() {
-        System.out.println("Rodando teste...");
+    public void testAtualizarQuilometragem() {
+        carro.atualizarQuilometragem(100);
+        assertEquals(3600, carro.getQuilometragem());
     }
+
 }
