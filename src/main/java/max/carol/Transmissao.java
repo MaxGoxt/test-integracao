@@ -1,33 +1,22 @@
 package max.carol;
 
 public class Transmissao {
-    /*
-     * 8. Sistema de Transmissão
-        Atributos:
-        • tipo (String)
-        • númeroDeMarchas (int)
-        • material (String)
-        • marca (String)
-        • estado (boolean)
-        Métodos:
-        • trocarMarcha(int marcha): Troca a marcha da transmissão.
-        • verificarEstado(): Verifica o estado do sistema de transmissão.
-        • substituirComponente(String componente): Substitui um componente da
-          transmissão
-     */
-
     private String tipo;
     private int numeroDeMarchas;
     private String material;
     private String marca;
-    private boolean estado; // true se o sistema de transmissão está funcionando, false caso contrário
+    private boolean estado;
 
     public Transmissao(String tipo, int numeroDeMarchas, String material, String marca) {
+        this(tipo, numeroDeMarchas, material, marca, true);
+    }
+
+    public Transmissao(String tipo, int numeroDeMarchas, String material, String marca, boolean estado) {
         this.tipo = tipo;
         this.numeroDeMarchas = numeroDeMarchas;
         this.material = material;
         this.marca = marca;
-        this.estado = true; // Inicialmente o sistema de transmissão está funcionando
+        this.estado = estado;
     }
 
     public void trocarMarcha(int marcha) {
@@ -53,15 +42,19 @@ public class Transmissao {
     public void substituirComponente(String componente) {
         if (!estado) {
             System.out.println("Substituindo componente: " + componente);
-            estado = true; // Após a substituição, o sistema de transmissão volta a funcionar
+            estado = true;
             System.out.println("Sistema de transmissão funcionando novamente.");
         } else {
             System.out.println("Sistema de transmissão já está funcionando. Nenhuma substituição necessária.");
         }
     }
 
-    // Getters
+    // Método para simular falha
+    public void falharSistema() {
+        this.estado = false;
+    }
 
+    // Getters
     public String getTipo() {
         return tipo;
     }
@@ -80,18 +73,5 @@ public class Transmissao {
 
     public boolean isEstado() {
         return estado;
-    }
-
-    // toString()
-
-    @Override
-    public String toString() {
-        return "Transmissao{" +
-                "tipo='" + tipo + '\'' +
-                ", numeroDeMarchas=" + numeroDeMarchas +
-                ", material='" + material + '\'' +
-                ", marca='" + marca + '\'' +
-                ", estado=" + estado +
-                '}';
     }
 }

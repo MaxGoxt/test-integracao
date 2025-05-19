@@ -1,19 +1,6 @@
 package max.carol;
 
-/*
- * 5. Sistema de Direção
-        Atributos:
-        • tipo (String)
-        • assistido (boolean)
-        • material (String)
-        • relação (double)
-        • marca (String)
-        Métodos:
-        • ajustarDireção(double ângulo): Ajusta o ângulo de direção.
-        • verificarEstado(): Verifica o estado do sistema de direção.
-        • substituirComponente(String componente): Substitui um componente do
-        sistema.
- */
+import java.util.List;
 
 public class SistemaDeDirecao {
 
@@ -41,6 +28,38 @@ public class SistemaDeDirecao {
 
     public void substituirComponente(String componente) {
         System.out.println("Componente " + componente + " substituído.");
+    }
+
+    // Métodos auxiliares para testes JUnit
+
+    public String[] getComponentesPrincipais() {
+        return new String[]{"Volante", "Caixa de direção", "Coluna", "Bomba hidráulica"};
+    }
+
+    public List<String> getChecklistManutencao() {
+        return List.of(
+            "Verificar fluido de direção",
+            "Inspecionar folgas no volante",
+            "Checar bomba hidráulica"
+        );
+    }
+
+    public String getInstrucoesDeManuseio() {
+        return "1. Gire o volante suavemente\n2. Evite manobras bruscas\n3. Mantenha manutenção em dia";
+    }
+
+    public SistemaDeDirecao getDirecaoReserva() {
+        return null; // útil para teste com assertNull
+    }
+
+    public void simularFalhaGrave() {
+        throw new IllegalStateException("Falha crítica no sistema de direção!");
+    }
+
+    public void testeDemorado() {
+        try {
+            Thread.sleep(800); // menos de 1 segundo
+        } catch (InterruptedException ignored) {}
     }
 
     // Getters

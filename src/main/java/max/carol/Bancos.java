@@ -1,18 +1,6 @@
 package max.carol;
 
-/*
- * 13. Bancos
-        Atributos:
-        • quantidade (int)
-        • material (String)
-        • cor (String)
-        • tipo (String)
-        • estado (String)
-        Métodos:
-        • ajustarEncosto(String posição): Ajusta o encosto do banco.
-        • ajustarAltura(double novaAltura): Ajusta a altura do banco.
-        • verificarEstado(): Verifica o estado dos bancos.
- */
+import java.util.List;
 
 public class Bancos {
     private int quantidade;
@@ -41,6 +29,33 @@ public class Bancos {
         System.out.println("O estado do banco é: " + estado);
     }
 
+    // Novos métodos para os testes
+    public String[] getMateriaisDisponiveis() {
+        return new String[]{"couro", "tecido", "sintético"};
+    }
+
+    public List<String> getCoresDisponiveis() {
+        return List.of("preto", "cinza", "bege");
+    }
+
+    public String getManual() {
+        return "1. Ajuste o encosto\n2. Ajuste a altura\n3. Verifique o estado";
+    }
+
+    public Bancos getBancoSubstituto() {
+        return null; // simula ausência de substituto
+    }
+
+    public void ajustarAlturaInvalida() {
+        throw new IllegalArgumentException("Altura inválida!");
+    }
+
+    public void operacaoLenta() {
+        try {
+            Thread.sleep(1500); // simula operação lenta
+        } catch (InterruptedException ignored) {}
+    }
+
     // Getters
 
     public int getQuantidade() {
@@ -63,3 +78,4 @@ public class Bancos {
         return estado;
     }
 }
+ 

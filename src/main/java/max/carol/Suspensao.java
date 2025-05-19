@@ -2,20 +2,6 @@ package max.carol;
 
 public class Suspensao {
     
-    /*
-     * 2. Suspensão
-            Atributos:
-            • tipo (String)
-            • material (String)
-            • altura (double)
-            • rigidez (int)
-            • marca (String)
-            Métodos:
-            • ajustarAltura(double novaAltura): Ajusta a altura da suspensão.
-            • verificarEstado(): Retorna o estado atual da suspensão.
-            • substituir(): Substitui a suspensão por uma nova.
-     */
-
     private String tipo;
     private String material;
     private double altura;
@@ -42,8 +28,25 @@ public class Suspensao {
         System.out.println("Suspensão substituída por uma nova.");
     }
 
-    // Getters
+    // Métodos auxiliares para os testes
 
+    public String[] getNomesGetters() {
+        return new String[] { "getTipo", "getMaterial", "getMarca" };
+    }
+    
+    public Object[] getValoresAtributos() {
+        return new Object[] { tipo, material, marca };
+    }
+
+    public Object metodoQueRetornaNull() {
+        return null;
+    }
+
+    public void metodoQueLancaExcecao() {
+        throw new IllegalArgumentException("Erro simulado");
+    }
+
+    // Getters
     public String getTipo() {
         return tipo;
     }

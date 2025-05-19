@@ -1,19 +1,6 @@
 package max.carol;
 
-/*
- * 6. Sistema de Combustível
-        Atributos:
-        • tipoDeCombustível (String)
-        • capacidade (double)
-        • nívelDeCombustível (double)
-        • marca (String)
-        • estado (boolean)
-        Métodos:
-        • verificarNível(): Verifica o nível de combustível.
-        • abastecer(double quantidade): Abastece o tanque com uma quantidade
-        específica de combustível.
-        • substituirTanque(): Substitui o tanque de combustível.
- */
+import java.util.List;
 
 public class SistemaDeCombustivel {
 
@@ -48,6 +35,38 @@ public class SistemaDeCombustivel {
         System.out.println("Tanque de combustível substituído.");
     }
 
+    // Métodos auxiliares para testes JUnit
+
+    public String[] getTiposDeCombustivelDisponiveis() {
+        return new String[]{"Gasolina", "Etanol", "Diesel", "GNV"};
+    }
+
+    public List<String> getRegrasDeSeguranca() {
+        return List.of(
+            "Não fume durante o abastecimento",
+            "Desligue o motor ao abastecer",
+            "Evite transbordamento"
+        );
+    }
+
+    public String getInstrucoesDeUso() {
+        return "1. Abra a tampa do tanque\n2. Insira a bomba\n3. Selecione o tipo de combustível\n4. Abasteça";
+    }
+
+    public SistemaDeCombustivel getTanqueReserva() {
+        return null; // útil para teste com assertNull
+    }
+
+    public void causarFalhaNoTanque() {
+        throw new RuntimeException("Falha no sistema de combustível detectada!");
+    }
+
+    public void abastecimentoDemorado() {
+        try {
+            Thread.sleep(900);
+        } catch (InterruptedException ignored) {}
+    }
+
     // Getters
 
     public String getTipoDeCombustivel() {
@@ -70,7 +89,6 @@ public class SistemaDeCombustivel {
         return estado;
     }
 
-    // toString
     @Override
     public String toString() {
         return "SistemaDeCombustivel{" +

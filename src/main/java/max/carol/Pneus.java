@@ -1,18 +1,6 @@
 package max.carol;
 
-/*
- * 10. Pneus
-Atributos:
-• tamanho (String)
-• tipo (String)
-• pressão (double)
-• marca (String)
-• estado (String)
-Métodos:
-• verificarPressão(): Verifica a pressão dos pneus.
-• ajustarPressão(double novaPressão): Ajusta a pressão dos pneus.
-• substituir(): Substitui o pneu.
- */
+import java.util.List;
 
 public class Pneus {
     private String tamanho;
@@ -40,6 +28,34 @@ public class Pneus {
 
     public void substituir() {
         System.out.println("O pneu " + marca + " foi substituído.");
+    }
+
+    // Métodos auxiliares para testes
+
+    public String[] getModelosDisponiveis() {
+        return new String[] {"Pirelli", "Michelin", "Goodyear"};
+    }
+
+    public List<String> getAvisosDeUso() {
+        return List.of("Verifique a pressão semanalmente", "Evite buracos", "Substitua a cada 50.000 km");
+    }
+
+    public String getManualUso() {
+        return "1. Calibre os pneus\n2. Use o bico correto\n3. Verifique o desgaste";
+    }
+
+    public Pneus getEstepeReserva() {
+        return null;
+    }
+
+    public void falhaPneu() {
+        throw new IllegalStateException("Falha no pneu detectada!");
+    }
+
+    public void calibragemDemorada() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {}
     }
 
     // Getters

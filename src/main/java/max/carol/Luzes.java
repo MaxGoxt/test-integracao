@@ -1,18 +1,6 @@
 package max.carol;
 
-/*
- * 4. Luzes
-    Atributos:
-    • tipo (String)
-    • intensidade (int)
-    • cor (String)
-    • estado (boolean)
-    • modelo (String)
-    Métodos:
-    • ligar(): Liga as luzes.
-    • desligar(): Desliga as luzes.
-    • ajustarIntensidade(int novaIntensidade): Ajusta a intensidade das luzes.
- */
+import java.util.List;
 
 public class Luzes {
 
@@ -43,6 +31,34 @@ public class Luzes {
     public void ajustarIntensidade(int novaIntensidade) {
         this.intensidade = novaIntensidade;
         System.out.println("Intensidade ajustada para: " + novaIntensidade);
+    }
+
+    // Métodos auxiliares para testes com JUnit
+
+    public String[] getCoresDisponiveis() {
+        return new String[]{"branca", "amarela", "azul"};
+    }
+
+    public List<String> getModelosDisponiveis() {
+        return List.of("LED", "Xênon", "Halógena");
+    }
+
+    public String getManualLuzes() {
+        return "1. Ligue as luzes\n2. Ajuste a intensidade\n3. Verifique a cor";
+    }
+
+    public Luzes getLuzReserva() {
+        return null; // simula ausência
+    }
+
+    public void ajustarErro() {
+        throw new IllegalArgumentException("Intensidade inválida!");
+    }
+
+    public void operacaoDemorada() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {}
     }
 
     // Getters

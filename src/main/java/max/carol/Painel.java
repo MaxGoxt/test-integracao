@@ -1,19 +1,6 @@
 package max.carol;
 
-/*
- * 11. Painel
-        Atributos:
-        • tipo (String)
-        • display (String)
-        • controle (boolean)
-        • marca (String)
-        • estado (boolean)
-        Métodos:
-        • ligarDisplay(): Liga o display do painel.
-        • desligarDisplay(): Desliga o display do painel.
-        • atualizarInformações(String info): Atualiza as informações exibidas no
-        painel.
- */
+import java.util.List;
 
 public class Painel {
     private String tipo;
@@ -49,6 +36,34 @@ public class Painel {
         }
     }
 
+    // Métodos auxiliares para testes
+
+    public String[] getOpcoesDeMenu() {
+        return new String[]{"Configurações", "Multimídia", "Navegação"};
+    }
+
+    public List<String> getHistoricoDeMensagens() {
+        return List.of("Porta aberta", "Cinto desatado", "Revisão próxima");
+    }
+
+    public String getManual() {
+        return "1. Pressione o botão\n2. Aguarde 5 segundos\n3. Solte o botão";
+    }
+
+    public Painel getPainelReserva() {
+        return null;
+    }
+
+    public void simularFalha() {
+        throw new IllegalStateException("Erro crítico no painel!");
+    }
+
+    public void operacaoDemorada() {
+        try {
+            Thread.sleep(1200);
+        } catch (InterruptedException ignored) {}
+    }
+
     // Getters
 
     public String getTipo() {
@@ -69,5 +84,5 @@ public class Painel {
 
     public boolean isEstado() {
         return estado;
-    }   
+    }
 }
