@@ -1,18 +1,6 @@
 package max.carol;
 
-/*
- * 7. Motor
-        Atributos:
-        • tipo (String)
-        • potência (int)
-        • cilindrada (double)
-        • marca (String)
-        • estado (boolean)
-        Métodos:
-        • ligar(): Liga o motor.
-        • desligar(): Desliga o motor.
-        • verificarEstado(): Verifica o estado do motor.
- */
+import java.util.List;
 
 public class Motor {
 
@@ -42,6 +30,34 @@ public class Motor {
 
     public String verificarEstado() {
         return estado ? "Motor em bom estado." : "Motor desligado.";
+    }
+
+    // Métodos auxiliares para testes JUnit
+
+    public String[] getSensoresConectados() {
+        return new String[]{"temperatura", "pressão", "rotação"};
+    }
+
+    public List<String> getModelosDisponiveis() {
+        return List.of("V8", "V6", "1.0 TSI");
+    }
+
+    public String getManualDeUso() {
+        return "1. Ligue o motor\n2. Aqueça por 1 minuto\n3. Mantenha revisões em dia";
+    }
+
+    public Motor getMotorReserva() {
+        return null;
+    }
+
+    public void falhaGrave() {
+        throw new IllegalStateException("Falha grave no motor!");
+    }
+
+    public void operacaoLenta() {
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException ignored) {}
     }
 
     // Getters

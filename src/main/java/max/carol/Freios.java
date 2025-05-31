@@ -1,18 +1,6 @@
 package max.carol;
 
-/*
- * 3. Freios
-        Atributos:
-        • tipo (String)
-        • material (String)
-        • tamanho (double)
-        • marca (String)
-        • nivelDeDesgaste (double)
-        Métodos:
-        • verificarDesgaste(): Retorna o nível de desgaste dos freios.
-        • substituirPastilhas(): Substitui as pastilhas de freio.
-        • ajustarFreio(): Ajusta o sistema de freio.
- */
+import java.util.List;
 
 public class Freios {
 
@@ -40,6 +28,34 @@ public class Freios {
 
     public void ajustarFreio() {
         System.out.println("Sistema de freio ajustado.");
+    }
+
+    // Métodos auxiliares para testes
+
+    public String[] getTiposDisponiveis() {
+        return new String[]{"disco", "tambor", "hidráulico"};
+    }
+
+    public List<String> getMarcasRecomendadas() {
+        return List.of("Brembo", "Bosch", "TRW");
+    }
+
+    public String getManualFreio() {
+        return "1. Verifique o desgaste\n2. Substitua as pastilhas\n3. Ajuste o sistema";
+    }
+
+    public Freios getFreioReserva() {
+        return null; // simula ausência de freio reserva
+    }
+
+    public void ajustarComErro() {
+        throw new IllegalStateException("Erro ao ajustar o freio!");
+    }
+
+    public void operacaoDemorada() {
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException ignored) {}
     }
 
     // Getters

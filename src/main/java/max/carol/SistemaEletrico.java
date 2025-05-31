@@ -1,19 +1,5 @@
 package max.carol;
 
-/*
- * 9. Sistema Elétrico
-        Atributos:
-        • voltagem (double)
-        • capacidade (double)
-        • tipoDeBateria (String)
-        • estado (boolean)
-        • marca (String)
-        Métodos:
-        • verificarBateria(): Verifica o estado da bateria.
-        • substituirBateria(): Substitui a bateria.
-        • testarSistema(): Testa o sistema elétrico.
- */
-
 public class SistemaEletrico {
 
     private double voltagem;
@@ -51,7 +37,7 @@ public class SistemaEletrico {
     public double getCapacidade() {
         return capacidade;
     }
-    
+
     public String getTipoDeBateria() {
         return tipoDeBateria;
     }
@@ -62,5 +48,27 @@ public class SistemaEletrico {
 
     public String getMarca() {
         return marca;
+    }
+
+    // Métodos auxiliares para os testes:
+
+    // Retorna os nomes dos getters da classe
+    public String[] getNomesGetters() {
+        return new String[] { "getVoltagem", "getCapacidade", "getTipoDeBateria", "isEstado", "getMarca" };
+    }
+
+    // Retorna os valores atuais dos atributos, na mesma ordem do getNomesGetters
+    public Object[] getValoresAtributos() {
+        return new Object[] { voltagem, capacidade, tipoDeBateria, estado, marca };
+    }
+
+    // Método que lança uma exceção para teste de assertThrows
+    public void metodoQueLancaExcecao() {
+        throw new IllegalStateException("Erro intencional");
+    }
+
+    // Método que retorna null para teste de assertNull
+    public Object metodoQueRetornaNull() {
+        return null;
     }
 }
