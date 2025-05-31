@@ -53,7 +53,7 @@ public class Carro {
         if (sistemaEletrico == null) {
             throw new NullPointerException("Sistema elétrico não está disponível.");
         }
-        if (sistemaEletrico.isEstadoOk()) {
+        if (!sistemaEletrico.isEstadoOk()) {
             throw new IllegalStateException("Bateria está descarregada.");
         }
 
