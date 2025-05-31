@@ -51,14 +51,14 @@ public class Carro {
     public void ligar() {
 
         if (sistemaEletrico == null) {
-            throw new IllegalStateException("Sistema elétrico não está disponível.");
+            throw new NullPointerException("Sistema elétrico não está disponível.");
         }
         if (sistemaEletrico.isEstadoOk()) {
             throw new IllegalStateException("Bateria está descarregada.");
         }
 
         if (sistemaDeCombustivel == null) {
-            throw new IllegalStateException("Sistema de combustível não está disponível.");            
+            throw new NullPointerException("Sistema de combustível não está disponível.");            
         }
 
         if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
@@ -66,11 +66,11 @@ public class Carro {
         }
 
         if (motor == null) {
-            throw new IllegalStateException("Motor não está disponível.");
+            throw new NullPointerException("Motor não está disponível.");
         }
 
         if (transmissao == null) {
-            throw new IllegalStateException("Transmissão não está disponível.");
+            throw new NullPointerException("Transmissão não está disponível.");
         }
         
         if (!ligado) {
