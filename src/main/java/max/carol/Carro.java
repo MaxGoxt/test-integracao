@@ -28,7 +28,7 @@ public class Carro {
     private Luzes luzes;
     private Motor motor;
     private Painel painel;
-    private Pneus pneus;
+    private List<Pneus> pneus; // Array de pneus
     private SistemaDeCombustivel sistemaDeCombustivel;
     private SistemaDeDirecao sistemaDeDirecao;
     private SistemaEletrico sistemaEletrico;
@@ -39,13 +39,40 @@ public class Carro {
         System.out.println("Carro.java");
     }
 
-    public Carro(String modelo, int ano, String cor, String placa, double quilometragem) {
+    public Carro(String modelo, int ano, String cor, String placa, double quilometragem, Pneus pneuDianteEsquerdo, Pneus pneuDianteiroDireito, Pneus pneuTraseiroEsquerdo, Pneus pneuTraseiroDireito) {
+
+        if (modelo == null || modelo.isEmpty()) {
+            throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
+        }
+        if (ano <= 1885) { // O primeiro carro foi inventado em 1886
+            throw new NullPointerException("Ano inválido para o carro.");
+        }
+        if (cor == null || cor.isEmpty()) {
+            throw new NullPointerException("Cor não pode ser nula ou vazia.");
+        }
+        if (placa == null || placa.isEmpty()) {
+            throw new NullPointerException("Placa não pode ser nula ou vazia.");
+        }
+        if (quilometragem < 0) {
+            throw new IllegalArgumentException("Quilometragem não pode ser negativa.");
+        }
+        if (pneuDianteEsquerdo == null || pneuDianteiroDireito == null || pneuTraseiroEsquerdo == null || pneuTraseiroDireito == null) {
+            throw new NullPointerException("Todos os pneus devem ser fornecidos.");
+        }
+        if (pneuDianteEsquerdo.getPosicao() != Pneus.posicaoPneu.DIANTEIRO_ESQUERDO ||
+            pneuDianteiroDireito.getPosicao() != Pneus.posicaoPneu.DIANTEIRO_DIREITO ||
+            pneuTraseiroEsquerdo.getPosicao() != Pneus.posicaoPneu.TRASEIRO_ESQUERDO ||
+            pneuTraseiroDireito.getPosicao() != Pneus.posicaoPneu.TRASEIRO_DIREITO) {
+            throw new IllegalArgumentException("Pneus devem estar nas posições corretas.");
+        }
+
         this.modelo = modelo;
         this.ano = ano;
         this.cor = cor;
         this.placa = placa;
         this.quilometragem = quilometragem;
-        this.ligado = false; // Inicialmente o carro está desligado
+        this.ligado = false; // Inicialmente o carro está 
+        this.pneus = List.of(pneuDianteEsquerdo, pneuDianteiroDireito, pneuTraseiroEsquerdo, pneuTraseiroDireito);
     }
 
     public void ligar() {

@@ -2,19 +2,28 @@ package max.carol;
 
 import java.util.List;
 
+
 public class Pneus {
     private String tamanho;
     private String tipo;
     private double pressao;
     private String marca;
     private String estado;
-
-    public Pneus(String tamanho, String tipo, double pressao, String marca, String estado) {
+    enum posicaoPneu {
+        DIANTEIRO_ESQUERDO,
+        DIANTEIRO_DIREITO,
+        TRASEIRO_ESQUERDO,
+        TRASEIRO_DIREITO,
+    }
+    private posicaoPneu posicao;
+    
+    public Pneus(String tamanho, String tipo, double pressao, String marca, String estado, posicaoPneu posicaoPneu) {
         this.tamanho = tamanho;
         this.tipo = tipo;
         this.pressao = pressao;
         this.marca = marca;
         this.estado = estado;
+        this.posicao = posicaoPneu;
     }
 
     public void verificarPressao() {
@@ -74,6 +83,10 @@ public class Pneus {
 
     public String getMarca() {
         return marca;
+    }
+
+    public posicaoPneu getPosicao() {
+        return posicao;
     }
 
     public String getEstado() {
