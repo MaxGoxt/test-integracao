@@ -5,24 +5,35 @@ import java.util.List;
 public class Carro {
     /*
      * 1. Carro
-        Atributos:
-        • modelo (String)
-        • ano (int)
-        • cor (String)
-        • placa (String)
-        • quilometragem (double)
-        Métodos:
-        • ligar(): Liga o carro.
-        • desligar(): Desliga o carro.
-        • atualizarQuilometragem(double km): Atualiza a quilometragem do carro.
+     * Atributos:
+     * • modelo (String)
+     * • ano (int)
+     * • cor (String)
+     * • placa (String)
+     * • quilometragem (double)
+     * Métodos:
+     * • ligar(): Liga o carro.
+     * • desligar(): Desliga o carro.
+     * • atualizarQuilometragem(double km): Atualiza a quilometragem do carro.
      */
-    
+
     private String modelo;
     private int ano;
     private String cor;
     private String placa;
     private double quilometragem;
     private boolean ligado;
+    private Bancos bancos;
+    private Freios freios;
+    private Luzes luzes;
+    private Motor motor;
+    private Painel painel;
+    private Pneus pneus;
+    private SistemaDeCombustivel sistemaDeCombustivel;
+    private SistemaDeDirecao sistemaDeDirecao;
+    private SistemaEletrico sistemaEletrico;
+    private Suspensao suspensao;
+    private Transmissao transmissao;
 
     public static void main(String[] args) {
         System.out.println("Carro.java");
@@ -38,6 +49,30 @@ public class Carro {
     }
 
     public void ligar() {
+
+        if (sistemaEletrico == null) {
+            throw new IllegalStateException("Sistema elétrico não está disponível.");
+        }
+        if (sistemaEletrico.isEstadoOk()) {
+            throw new IllegalStateException("Bateria está descarregada.");
+        }
+
+        if (sistemaDeCombustivel == null) {
+            throw new IllegalStateException("Sistema de combustível não está disponível.");            
+        }
+
+        if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
+            throw new IllegalStateException("Tanque de combustível está vazio.");
+        }
+
+        if (motor == null) {
+            throw new IllegalStateException("Motor não está disponível.");
+        }
+
+        if (transmissao == null) {
+            throw new IllegalStateException("Transmissão não está disponível.");
+        }
+        
         if (!ligado) {
             ligado = true;
             System.out.println("Carro ligado.");
@@ -103,8 +138,9 @@ public class Carro {
                 ", ligado=" + ligado +
                 '}';
     }
-     public String[] getServicosPendentes() {
-        return new String[]{"troca de óleo", "revisão dos freios"};
+
+    public String[] getServicosPendentes() {
+        return new String[] { "troca de óleo", "revisão dos freios" };
     }
 
     public List<String> getManutencoesRecentes() {
@@ -126,7 +162,8 @@ public class Carro {
     public void operacaoDemorada() {
         try {
             Thread.sleep(2000); // simula operação lenta
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
 }

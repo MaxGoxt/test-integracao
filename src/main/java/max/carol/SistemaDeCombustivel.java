@@ -10,6 +10,7 @@ public class SistemaDeCombustivel {
     private String marca;
     private boolean estado;
 
+
     public SistemaDeCombustivel(String tipoDeCombustivel, double capacidade, double nivelDeCombustivel, String marca, boolean estado) {
         this.tipoDeCombustivel = tipoDeCombustivel;
         this.capacidade = capacidade;

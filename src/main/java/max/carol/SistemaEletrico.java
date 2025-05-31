@@ -42,7 +42,7 @@ public class SistemaEletrico {
         return tipoDeBateria;
     }
 
-    public boolean isEstado() {
+    public boolean isEstadoOk() {
         return estado;
     }
 
