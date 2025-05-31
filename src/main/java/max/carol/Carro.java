@@ -108,12 +108,12 @@ public class Carro {
         }
     }
 
-    public void desligar() {
+    public String desligar() {
         if (ligado) {
             ligado = false;
-            System.out.println("Carro desligado.");
+            return "Carro desligado.";
         } else {
-            System.out.println("Carro já está desligado.");
+            return "Carro já está desligado.";
         }
     }
 
