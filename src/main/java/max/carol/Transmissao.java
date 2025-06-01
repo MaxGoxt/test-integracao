@@ -1,17 +1,27 @@
 package max.carol;
 
 public class Transmissao {
-    private String tipo;
+    enum tipos {
+        MarchaManual,
+        MarchaAutomatica
+    };
+    private tipos tipo;
     private int numeroDeMarchas;
     private String material;
     private String marca;
     private boolean estado;
+    enum MarchaManual {
+        R, N, M1, M2, M3, M4, M5, M6;
+    }
+    enum MarchaAutomatica {
+        P, R, N, D, S;
+    }
 
-    public Transmissao(String tipo, int numeroDeMarchas, String material, String marca) {
+    public Transmissao(tipos tipo, int numeroDeMarchas, String material, String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
     }
 
-    public Transmissao(String tipo, int numeroDeMarchas, String material, String marca, boolean estado) {
+    public Transmissao(tipos tipo, int numeroDeMarchas, String material, String marca, boolean estado) {
         this.tipo = tipo;
         this.numeroDeMarchas = numeroDeMarchas;
         this.material = material;
@@ -55,8 +65,8 @@ public class Transmissao {
     }
 
     // Getters
-    public String getTipo() {
-        return tipo;
+    public tipos getTipo() {
+        return this.tipo;
     }
 
     public int getNumeroDeMarchas() {
