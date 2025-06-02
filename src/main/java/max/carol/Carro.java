@@ -2,6 +2,9 @@ package max.carol;
 
 import java.util.List;
 
+import max.carol.Transmissao.MarchaManual;
+import max.carol.Transmissao.Tipos;
+
 public class Carro {
     /*
      * 1. Carro
@@ -126,6 +129,7 @@ public class Carro {
     public String desligar() {
         if (ligado) {
             ligado = false;
+            velocidade = 0; // Reseta a velocidade ao desligar
             return "Carro desligado.";
         } else {
             return "Carro já está desligado.";
@@ -147,10 +151,23 @@ public class Carro {
             return "Carro desligado. Ligue o carro antes de acelerar.";
         }
 
-        if (transmissao.getTipo() == Transmissao.tipos.MarchaAutomatica) {
+        if (velocidade >= velocidadeMaxima) {
+            return "Velocidade máxima atingida. Não é possível acelerar mais.";
+        }
+
+        if (transmissao == null) {
+            return "Transmissão não está disponível. Não é possível acelerar.";
+        }
+
+        if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
             velocidade += 10; // Aumenta a velocidade em 10 km/h
             return "Carro acelerando...";
         }
+
+        if (transmissao.getTipo() == Tipos.MarchaManual && transmissao.getMarcha() == MarchaManual.N) {
+            return "Carro em ponto morto. Mude a marcha para acelerar.";
+        }
+
         velocidade += 10; // Aumenta a velocidade em 10 km/h
         return "Carro acelerando...";
     }
