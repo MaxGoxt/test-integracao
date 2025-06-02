@@ -11,11 +11,14 @@ public class Transmissao {
     private String marca;
     private boolean estado;
     enum MarchaManual {
-        R, N, M1, M2, M3, M4, M5, M6;
+        R, N, M1, M2, M3, M4, M5;
     }
+
     enum MarchaAutomatica {
-        P, R, N, D, S;
+        P, R, N, D;
     }
+
+    private String marchaAtual;
 
     public Transmissao(tipos tipo, int numeroDeMarchas, String material, String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
@@ -40,6 +43,7 @@ public class Transmissao {
             System.out.println("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
     }
+
 
     public void verificarEstado() {
         if (estado) {
