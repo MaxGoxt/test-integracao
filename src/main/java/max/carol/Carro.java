@@ -23,6 +23,8 @@ public class Carro {
     private String placa;
     private double quilometragem;
     private boolean ligado;
+    private Integer velocidade = 0; // Velocidade inicial do carro
+    private Integer velocidadeMaxima;
     private Bancos bancos;
     private Freios freios;
     private Luzes luzes;
@@ -39,7 +41,19 @@ public class Carro {
         System.out.println("Carro.java");
     }
 
-    public Carro(String modelo, int ano, String cor, String placa, double quilometragem, Pneus pneuDianteEsquerdo, Pneus pneuDianteiroDireito, Pneus pneuTraseiroEsquerdo, Pneus pneuTraseiroDireito) {
+    public Carro(
+            String modelo,
+            int ano,
+            String cor,
+            String placa,
+            double quilometragem,
+            Transmissao transmissao,
+            Pneus pneuDianteEsquerdo,
+            Pneus pneuDianteiroDireito,
+            Pneus pneuTraseiroEsquerdo,
+            Pneus pneuTraseiroDireito
+
+    ) {
 
         if (modelo == null || modelo.isEmpty()) {
             throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
@@ -56,13 +70,14 @@ public class Carro {
         if (quilometragem < 0) {
             throw new IllegalArgumentException("Quilometragem não pode ser negativa.");
         }
-        if (pneuDianteEsquerdo == null || pneuDianteiroDireito == null || pneuTraseiroEsquerdo == null || pneuTraseiroDireito == null) {
+        if (pneuDianteEsquerdo == null || pneuDianteiroDireito == null || pneuTraseiroEsquerdo == null
+                || pneuTraseiroDireito == null) {
             throw new NullPointerException("Todos os pneus devem ser fornecidos.");
         }
         if (pneuDianteEsquerdo.getPosicao() != Pneus.posicaoPneu.DIANTEIRO_ESQUERDO ||
-            pneuDianteiroDireito.getPosicao() != Pneus.posicaoPneu.DIANTEIRO_DIREITO ||
-            pneuTraseiroEsquerdo.getPosicao() != Pneus.posicaoPneu.TRASEIRO_ESQUERDO ||
-            pneuTraseiroDireito.getPosicao() != Pneus.posicaoPneu.TRASEIRO_DIREITO) {
+                pneuDianteiroDireito.getPosicao() != Pneus.posicaoPneu.DIANTEIRO_DIREITO ||
+                pneuTraseiroEsquerdo.getPosicao() != Pneus.posicaoPneu.TRASEIRO_ESQUERDO ||
+                pneuTraseiroDireito.getPosicao() != Pneus.posicaoPneu.TRASEIRO_DIREITO) {
             throw new IllegalArgumentException("Pneus devem estar nas posições corretas.");
         }
 
@@ -71,7 +86,7 @@ public class Carro {
         this.cor = cor;
         this.placa = placa;
         this.quilometragem = quilometragem;
-        this.ligado = false; // Inicialmente o carro está 
+        this.ligado = false; // Inicialmente o carro está
         this.pneus = List.of(pneuDianteEsquerdo, pneuDianteiroDireito, pneuTraseiroEsquerdo, pneuTraseiroDireito);
     }
 
@@ -85,7 +100,7 @@ public class Carro {
         }
 
         if (sistemaDeCombustivel == null) {
-            throw new NullPointerException("Sistema de combustível não está disponível.");            
+            throw new NullPointerException("Sistema de combustível não está disponível.");
         }
 
         if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
@@ -99,7 +114,7 @@ public class Carro {
         if (transmissao == null) {
             throw new NullPointerException("Transmissão não está disponível.");
         }
-        
+
         if (!ligado) {
             ligado = true;
             System.out.println("Carro ligado.");
@@ -124,6 +139,20 @@ public class Carro {
         } else {
             System.out.println("Valor de quilometragem inválido.");
         }
+    }
+
+    public String acelerar() {
+
+        if (!ligado) {
+            return "Carro desligado. Ligue o carro antes de acelerar.";
+        }
+
+        if (transmissao.getTipo() == Transmissao.tipos.MarchaAutomatica) {
+            velocidade += 10; // Aumenta a velocidade em 10 km/h
+            return "Carro acelerando...";
+        }
+        velocidade += 10; // Aumenta a velocidade em 10 km/h
+        return "Carro acelerando...";
     }
 
     // Getters

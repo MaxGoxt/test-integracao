@@ -5,11 +5,7 @@ public class Transmissao {
         MarchaManual,
         MarchaAutomatica
     };
-    private tipos tipo;
-    private int numeroDeMarchas;
-    private String material;
-    private String marca;
-    private boolean estado;
+    
     enum MarchaManual {
         R, N, M1, M2, M3, M4, M5;
     }
@@ -17,8 +13,14 @@ public class Transmissao {
     enum MarchaAutomatica {
         P, R, N, D;
     }
+    private tipos tipo;
+    private int numeroDeMarchas;
+    private String material;
+    private String marca;
+    private boolean estado;
+    private MarchaManual marchaManual;
+    private MarchaAutomatica marchaAutomatica;
 
-    private String marchaAtual;
 
     public Transmissao(tipos tipo, int numeroDeMarchas, String material, String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
@@ -30,6 +32,11 @@ public class Transmissao {
         this.material = material;
         this.marca = marca;
         this.estado = estado;
+        if (tipo == tipos.MarchaManual) {
+            this.marchaManual = MarchaManual.N;
+        } else if (tipo == tipos.MarchaAutomatica) {
+            this.marchaAutomatica = MarchaAutomatica.N;
+        }
     }
 
     public void trocarMarcha(int marcha) {
@@ -83,6 +90,10 @@ public class Transmissao {
 
     public String getMarca() {
         return marca;
+    }
+
+    public Object getMarcha() {
+        return marchaManual != null ? marchaManual : marchaAutomatica;
     }
 
     public boolean isEstado() {
