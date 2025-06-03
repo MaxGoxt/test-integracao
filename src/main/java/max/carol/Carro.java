@@ -51,6 +51,9 @@ public class Carro {
             String placa,
             double quilometragem,
             Transmissao transmissao,
+            Motor motor,
+            SistemaEletrico sistemaEletrico,
+            SistemaDeCombustivel sistemaDeCombustivel,
             Pneus pneuDianteEsquerdo,
             Pneus pneuDianteiroDireito,
             Pneus pneuTraseiroEsquerdo,
@@ -83,14 +86,30 @@ public class Carro {
                 pneuTraseiroDireito.getPosicao() != Pneus.posicaoPneu.TRASEIRO_DIREITO) {
             throw new IllegalArgumentException("Pneus devem estar nas posições corretas.");
         }
+        if (transmissao == null) {
+            throw new NullPointerException("Transmissão não pode ser nula.");
+        }
+        if (motor == null) {
+            throw new NullPointerException("Motor não pode ser nulo.");
+        }
+        if (sistemaEletrico == null) {
+            throw new NullPointerException("Sistema elétrico não pode ser nulo.");
+        }
+        if (sistemaDeCombustivel == null) {
+            throw new NullPointerException("Sistema de combustível não pode ser nulo.");
+        }
 
+        this.pneus = List.of(pneuDianteEsquerdo, pneuDianteiroDireito, pneuTraseiroEsquerdo, pneuTraseiroDireito);
+        this.sistemaDeCombustivel = sistemaDeCombustivel;
+        this.sistemaEletrico = sistemaEletrico;
+        this.quilometragem = quilometragem;
+        this.transmissao = transmissao;
         this.modelo = modelo;
+        this.ligado = false;
+        this.motor = motor;
+        this.placa = placa;
         this.ano = ano;
         this.cor = cor;
-        this.placa = placa;
-        this.quilometragem = quilometragem;
-        this.ligado = false; // Inicialmente o carro está
-        this.pneus = List.of(pneuDianteEsquerdo, pneuDianteiroDireito, pneuTraseiroEsquerdo, pneuTraseiroDireito);
     }
 
     public void ligar() {
