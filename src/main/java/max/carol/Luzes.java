@@ -1,7 +1,5 @@
 package max.carol;
 
-import java.util.List;
-
 public class Luzes {
 
     private String tipo;
@@ -11,16 +9,15 @@ public class Luzes {
     private String modelo;
     private String luzDeFreioLigada;
 
+
     public Luzes(String tipo, int intensidade, String cor, boolean estado, String modelo, String luzDeFreioLigada) {
         this.tipo = tipo;
         this.intensidade = intensidade;
+        this.cor = cor;
         this.estado = estado;
         this.modelo = modelo;
         this.luzDeFreioLigada = luzDeFreioLigada;
     }
-
-    
-
     public String ligar() {
         estado = true;
         return "Luzes ligadas.";
@@ -36,7 +33,7 @@ public class Luzes {
         return "Intensidade ajustada para: " + novaIntensidade;
     }
 
-    public String LuzDeFreio(){
+    public String LuzDeFreio() {
         return luzDeFreioLigada;
     }
 

@@ -38,7 +38,6 @@ public class Suspensao {
         return new Object[] { tipo, material, marca };
     }
 
-
     // Getters
     public String getTipo() {
         return tipo;

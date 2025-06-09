@@ -12,7 +12,8 @@ public class Bancos {
     private double alturaBanco;
 
 
-    public Bancos(int quantidade,  String estado, String material, String cor, String tipo) {
+    // Construtor completo
+    public Bancos(int quantidade, String estado, String material, String cor, String tipo) {
         this.quantidade = quantidade;
         this.estado = estado;
         this.material = material;
@@ -45,7 +46,8 @@ public class Bancos {
         System.out.println("O estado do banco é: " + estado);
         return "Estado do banco: " + estado;
     }
-      public String[] getMateriaisDisponiveis() {
+
+    public String[] getMateriaisDisponiveis() {
         return new String[]{"couro", "tecido", "sintético"};
     }
 
@@ -58,14 +60,11 @@ public class Bancos {
     }
 
     // Getters
-
     public int getQuantidade() {
         return quantidade;
     }
-
 
     public String getEstado() {
         return estado;
     }
 }
- 

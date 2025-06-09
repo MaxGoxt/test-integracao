@@ -124,7 +124,7 @@ public class Carro {
         this.sistemaDeDirecao = sistemaDeDirecao;
         this.suspensao = suspensao;
         this.painel = painel;
-        this.velocidadeMaxima = 200; // Definindo uma velocidade máxima padrão
+        this.velocidadeMaxima = 200; 
     }
 
     public void ligar() {

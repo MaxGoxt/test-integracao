@@ -11,6 +11,7 @@ public class Freios {
     private double nivelDeDesgaste;
     private boolean freioDeMaoAtivo;
 
+    // Construtor completo
     public Freios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste, boolean freioDeMaoAtivo) {
         this.tipo = tipo;
         this.material = material;
@@ -28,7 +29,7 @@ public class Freios {
         return this.freioDeMaoAtivo;
     }
 
-    public  String desativarFreiodemao() {
+    public String desativarFreiodemao() {
         if (this.freioDeMaoAtivo) {
             this.freioDeMaoAtivo = false;
             return "Freio de mão desativado com sucesso.";
@@ -36,6 +37,7 @@ public class Freios {
             return "Freio de mão já está desativado.";
         }
     }
+
     public String ativarFreiodemao() {
         if (!this.freioDeMaoAtivo) {
             this.freioDeMaoAtivo = true;
@@ -53,8 +55,6 @@ public class Freios {
         System.out.println("Sistema de freio ajustado.");
     }
 
-    // Métodos auxiliares para testes
-
     public String[] getTiposDisponiveis() {
         return new String[]{"disco", "tambor", "hidráulico"};
     }
@@ -68,7 +68,7 @@ public class Freios {
     }
 
     public Freios getFreioReserva() {
-        return null; // simula ausência de freio reserva
+        return null;
     }
 
     public void ajustarComErro() {

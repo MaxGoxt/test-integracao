@@ -17,6 +17,7 @@ public class Painel {
         this.estado = estado;
     }
 
+
     public void ligarDisplay() {
         estado = true;
         System.out.println("O display do painel " + marca + " está ligado.");

@@ -2,21 +2,23 @@ package max.carol;
 
 import java.util.List;
 
-
 public class Pneus {
     private String tamanho;
     private String tipo;
     private double pressao;
     private String marca;
     private String estado;
-    enum posicaoPneu {
+
+    public enum posicaoPneu {
         DIANTEIRO_ESQUERDO,
         DIANTEIRO_DIREITO,
         TRASEIRO_ESQUERDO,
         TRASEIRO_DIREITO,
     }
+
     private posicaoPneu posicao;
-    
+
+    // Construtor principal
     public Pneus(String tamanho, String tipo, double pressao, String marca, String estado, posicaoPneu posicaoPneu) {
         this.tamanho = tamanho;
         this.tipo = tipo;
@@ -24,6 +26,10 @@ public class Pneus {
         this.marca = marca;
         this.estado = estado;
         this.posicao = posicaoPneu;
+    }
+
+    public Pneus(posicaoPneu posicao) {
+        this("16", "radial", 32.0, "Pirelli", "novo", posicao);
     }
 
     public void verificarPressao() {
@@ -39,7 +45,6 @@ public class Pneus {
         System.out.println("O pneu " + marca + " foi substituído.");
     }
 
-    // Métodos auxiliares para testes
 
     public String[] getModelosDisponiveis() {
         return new String[] {"Pirelli", "Michelin", "Goodyear"};
@@ -60,7 +65,7 @@ public class Pneus {
     public void falhaPneu() {
         throw new IllegalStateException("Falha no pneu detectada!");
     }
-    
+
     // Getters
 
     public String getTamanho() {

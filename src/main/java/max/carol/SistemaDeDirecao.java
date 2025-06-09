@@ -10,12 +10,18 @@ public class SistemaDeDirecao {
     private double relacao;
     private String marca;
 
+    // ✅ Construtor com todos os parâmetros
     public SistemaDeDirecao(String tipo, boolean assistido, String material, double relacao, String marca) {
         this.tipo = tipo;
         this.assistido = assistido;
         this.material = material;
         this.relacao = relacao;
         this.marca = marca;
+    }
+
+    // ✅ Construtor padrão com valores genéricos
+    public SistemaDeDirecao() {
+        this("hidráulica", true, "aço", 14.5, "Bosch");
     }
 
     public void ajustarDirecao(double angulo) {
@@ -49,7 +55,7 @@ public class SistemaDeDirecao {
     }
 
     public SistemaDeDirecao getDirecaoReserva() {
-        return null; // útil para teste com assertNull
+        return null;
     }
 
     public void simularFalhaGrave() {
@@ -58,7 +64,7 @@ public class SistemaDeDirecao {
 
     public void testeDemorado() {
         try {
-            Thread.sleep(800); // menos de 1 segundo
+            Thread.sleep(800);
         } catch (InterruptedException ignored) {}
     }
 

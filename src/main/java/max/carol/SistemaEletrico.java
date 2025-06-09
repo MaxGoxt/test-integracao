@@ -8,12 +8,18 @@ public class SistemaEletrico {
     private boolean estado;
     private String marca;
 
+    // ✅ Construtor completo (já existente)
     public SistemaEletrico(double voltagem, double capacidade, String tipoDeBateria, boolean estado, String marca) {
         this.voltagem = voltagem;
         this.capacidade = capacidade;
         this.tipoDeBateria = tipoDeBateria;
         this.estado = estado;
         this.marca = marca;
+    }
+
+    // ✅ Novo construtor com apenas o estado (para uso com `new SistemaEletrico(true)`)
+    public SistemaEletrico(boolean estado) {
+        this(12.0, 60.0, "Chumbo-ácido", estado, "Moura");
     }
 
     public String verificarBateria() {
@@ -52,22 +58,18 @@ public class SistemaEletrico {
 
     // Métodos auxiliares para os testes:
 
-    // Retorna os nomes dos getters da classe
     public String[] getNomesGetters() {
         return new String[] { "getVoltagem", "getCapacidade", "getTipoDeBateria", "isEstado", "getMarca" };
     }
 
-    // Retorna os valores atuais dos atributos, na mesma ordem do getNomesGetters
     public Object[] getValoresAtributos() {
         return new Object[] { voltagem, capacidade, tipoDeBateria, estado, marca };
     }
 
-    // Método que lança uma exceção para teste de assertThrows
     public void metodoQueLancaExcecao() {
         throw new IllegalStateException("Erro intencional");
     }
 
-    // Método que retorna null para teste de assertNull
     public Object metodoQueRetornaNull() {
         return null;
     }
