@@ -52,8 +52,12 @@ public class Carro {
             double quilometragem,
             Transmissao transmissao,
             Motor motor,
+            Suspensao suspensao,
+            Painel painel,
             SistemaEletrico sistemaEletrico,
+            SistemaDeDirecao sistemaDeDirecao,
             SistemaDeCombustivel sistemaDeCombustivel,
+            Luzes luzes,
             Freios freios,
             Bancos bancos,
             Pneus pneuDianteEsquerdo,
@@ -116,6 +120,11 @@ public class Carro {
         this.cor = cor;
         this.bancos = bancos;
         this.freios = freios;
+        this.luzes = luzes;
+        this.sistemaDeDirecao = sistemaDeDirecao;
+        this.suspensao = suspensao;
+        this.painel = painel;
+        this.velocidadeMaxima = 200; // Definindo uma velocidade máxima padrão
     }
 
     public void ligar() {
@@ -250,6 +259,14 @@ public class Carro {
 
     public boolean isLigado() {
         return ligado;
+    }
+
+     public Bancos getBancos() {
+        return bancos;
+    }
+
+    public void setBancos(Bancos bancos) {
+        this.bancos = bancos;
     }
 
     // toString
