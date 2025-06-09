@@ -60,13 +60,7 @@ public class Pneus {
     public void falhaPneu() {
         throw new IllegalStateException("Falha no pneu detectada!");
     }
-
-    public void calibragemDemorada() {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException ignored) {}
-    }
-
+    
     // Getters
 
     public String getTamanho() {

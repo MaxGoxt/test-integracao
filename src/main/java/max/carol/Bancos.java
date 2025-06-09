@@ -4,33 +4,48 @@ import java.util.List;
 
 public class Bancos {
     private int quantidade;
+    private String estado;
     private String material;
     private String cor;
     private String tipo;
-    private String estado;
+    private String posicaoEncosto;
+    private double alturaBanco;
 
-    public Bancos(int quantidade, String material, String cor, String tipo, String estado) {
+
+    public Bancos(int quantidade,  String estado, String material, String cor, String tipo) {
         this.quantidade = quantidade;
+        this.estado = estado;
         this.material = material;
         this.cor = cor;
         this.tipo = tipo;
-        this.estado = estado;
     }
 
-    public void ajustarEncosto(String posicao) {
+    public String ajustarEncosto(String posicao) {
         System.out.println("Ajustando o encosto do banco para a posição: " + posicao);
+        if (posicao == null || posicao.isEmpty()) {
+            throw new IllegalStateException("Posição inválida para o encosto");
+        }
+        this.posicaoEncosto = posicao;
+        return "Encosto ajustado para " + posicaoEncosto;
     }
 
-    public void ajustarAltura(double novaAltura) {
+    public String ajustarAltura(double novaAltura) {
         System.out.println("Ajustando a altura do banco para: " + novaAltura + " cm");
+        if (novaAltura < 0) {
+            this.ajustarAlturaInvalida();
+        }
+        if (novaAltura > 100) {
+            return "Altura máxima permitida é 100 cm";
+        }
+        this.alturaBanco = novaAltura;
+        return "Altura ajustada para " + alturaBanco + " cm";
     }
 
-    public void verificarEstado() {
+    public String verificarEstado() {
         System.out.println("O estado do banco é: " + estado);
+        return "Estado do banco: " + estado;
     }
-
-    // Novos métodos para os testes
-    public String[] getMateriaisDisponiveis() {
+      public String[] getMateriaisDisponiveis() {
         return new String[]{"couro", "tecido", "sintético"};
     }
 
@@ -38,22 +53,8 @@ public class Bancos {
         return List.of("preto", "cinza", "bege");
     }
 
-    public String getManual() {
-        return "1. Ajuste o encosto\n2. Ajuste a altura\n3. Verifique o estado";
-    }
-
-    public Bancos getBancoSubstituto() {
-        return null; // simula ausência de substituto
-    }
-
     public void ajustarAlturaInvalida() {
         throw new IllegalArgumentException("Altura inválida!");
-    }
-
-    public void operacaoLenta() {
-        try {
-            Thread.sleep(1500); // simula operação lenta
-        } catch (InterruptedException ignored) {}
     }
 
     // Getters
@@ -62,17 +63,6 @@ public class Bancos {
         return quantidade;
     }
 
-    public String getMaterial() {
-        return material;
-    }
-
-    public String getCor() {
-        return cor;
-    }
-
-    public String getTipo() {
-        return tipo;
-    }
 
     public String getEstado() {
         return estado;

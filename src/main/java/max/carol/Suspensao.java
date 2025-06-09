@@ -38,13 +38,6 @@ public class Suspensao {
         return new Object[] { tipo, material, marca };
     }
 
-    public Object metodoQueRetornaNull() {
-        return null;
-    }
-
-    public void metodoQueLancaExcecao() {
-        throw new IllegalArgumentException("Erro simulado");
-    }
 
     // Getters
     public String getTipo() {

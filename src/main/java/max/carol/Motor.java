@@ -18,14 +18,14 @@ public class Motor {
         this.estado = estado;
     }
 
-    public void ligar() {
+    public String ligar() {
         estado = true;
-        System.out.println("Motor ligado.");
+        return "Motor ligado.";
     }
 
-    public void desligar() {
+    public String desligar() {
         estado = false;
-        System.out.println("Motor desligado.");
+        return "Motor desligado.";
     }
 
     public String verificarEstado() {
@@ -35,29 +35,15 @@ public class Motor {
     // Métodos auxiliares para testes JUnit
 
     public String[] getSensoresConectados() {
-        return new String[]{"temperatura", "pressão", "rotação"};
+        return new String[] { "temperatura", "pressão", "rotação" };
     }
 
     public List<String> getModelosDisponiveis() {
         return List.of("V8", "V6", "1.0 TSI");
     }
 
-    public String getManualDeUso() {
-        return "1. Ligue o motor\n2. Aqueça por 1 minuto\n3. Mantenha revisões em dia";
-    }
-
-    public Motor getMotorReserva() {
-        return null;
-    }
-
     public void falhaGrave() {
         throw new IllegalStateException("Falha grave no motor!");
-    }
-
-    public void operacaoLenta() {
-        try {
-            Thread.sleep(1500);
-        } catch (InterruptedException ignored) {}
     }
 
     // Getters

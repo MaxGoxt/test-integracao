@@ -9,17 +9,40 @@ public class Freios {
     private double tamanho;
     private String marca;
     private double nivelDeDesgaste;
+    private boolean freioDeMaoAtivo;
 
-    public Freios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste) {
+    public Freios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste, boolean freioDeMaoAtivo) {
         this.tipo = tipo;
         this.material = material;
         this.tamanho = tamanho;
         this.marca = marca;
         this.nivelDeDesgaste = nivelDeDesgaste;
+        this.freioDeMaoAtivo = freioDeMaoAtivo;
     }
 
     public double verificarDesgaste() {
         return nivelDeDesgaste;
+    }
+
+    public boolean verificarfreioDeMao(){
+        return this.freioDeMaoAtivo;
+    }
+
+    public  String desativarFreiodemao() {
+        if (this.freioDeMaoAtivo) {
+            this.freioDeMaoAtivo = false;
+            return "Freio de mão desativado com sucesso.";
+        } else {
+            return "Freio de mão já está desativado.";
+        }
+    }
+    public String ativarFreiodemao() {
+        if (!this.freioDeMaoAtivo) {
+            this.freioDeMaoAtivo = true;
+            return "Freio de mão ativado com sucesso.";
+        } else {
+            return "Freio de mão já está ativado.";
+        }
     }
 
     public void substituirPastilhas() {

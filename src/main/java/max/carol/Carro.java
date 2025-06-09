@@ -54,11 +54,12 @@ public class Carro {
             Motor motor,
             SistemaEletrico sistemaEletrico,
             SistemaDeCombustivel sistemaDeCombustivel,
+            Freios freios,
+            Bancos bancos,
             Pneus pneuDianteEsquerdo,
             Pneus pneuDianteiroDireito,
             Pneus pneuTraseiroEsquerdo,
             Pneus pneuTraseiroDireito
-
     ) {
 
         if (modelo == null || modelo.isEmpty()) {
@@ -98,6 +99,9 @@ public class Carro {
         if (sistemaDeCombustivel == null) {
             throw new NullPointerException("Sistema de combustível não pode ser nulo.");
         }
+        if (bancos == null) {
+            throw new NullPointerException("Bancos não podem ser nulos.");
+        }
 
         this.pneus = List.of(pneuDianteEsquerdo, pneuDianteiroDireito, pneuTraseiroEsquerdo, pneuTraseiroDireito);
         this.sistemaDeCombustivel = sistemaDeCombustivel;
@@ -110,6 +114,8 @@ public class Carro {
         this.placa = placa;
         this.ano = ano;
         this.cor = cor;
+        this.bancos = bancos;
+        this.freios = freios;
     }
 
     public void ligar() {
@@ -191,6 +197,35 @@ public class Carro {
         return "Carro acelerando...";
     }
 
+    public String frear() {
+
+        if (!ligado) {
+            return "Carro desligado.";
+        }
+
+        if (velocidade <= 0) {
+            return "Carro já está parado.";
+        }
+
+        if (freios == null) {
+            return "Sistema de freios não está disponível. Não é possível frear.";
+        }
+
+        velocidade -= 10; // Diminui a velocidade em 10 km/h
+        if (velocidade < 0) {
+            velocidade = 0; // Garante que a velocidade não fique negativa
+        }
+        return "Carro freando...";
+    }
+
+    public String buzinar() {
+        if (!ligado) {
+            return "Carro desligado. Ligue o carro para buzinar.";
+        }
+        return "Buzina acionada!";
+    }
+    
+
     // Getters
 
     public String getModelo() {
@@ -229,33 +264,6 @@ public class Carro {
                 ", quilometragem=" + quilometragem +
                 ", ligado=" + ligado +
                 '}';
-    }
-
-    public String[] getServicosPendentes() {
-        return new String[] { "troca de óleo", "revisão dos freios" };
-    }
-
-    public List<String> getManutencoesRecentes() {
-        return List.of("troca de óleo", "alinhamento");
-    }
-
-    public String getManualUsuario() {
-        return "1. Ligue o carro\n2. Dirija com segurança";
-    }
-
-    public Carro getProximoCarro() {
-        return null; // simula ausência de próximo carro
-    }
-
-    public void acelerarNegativo() {
-        throw new IllegalArgumentException("Velocidade não pode ser negativa!");
-    }
-
-    public void operacaoDemorada() {
-        try {
-            Thread.sleep(2000); // simula operação lenta
-        } catch (InterruptedException ignored) {
-        }
     }
 
 }

@@ -32,7 +32,7 @@ public class SistemaDeDirecao {
 
     // Métodos auxiliares para testes JUnit
 
-    public String[] getComponentesPrincipais() {
+    public String[] ComponentesPrincipais() {
         return new String[]{"Volante", "Caixa de direção", "Coluna", "Bomba hidráulica"};
     }
 

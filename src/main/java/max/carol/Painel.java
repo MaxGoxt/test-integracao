@@ -38,20 +38,8 @@ public class Painel {
 
     // Métodos auxiliares para testes
 
-    public String[] getOpcoesDeMenu() {
-        return new String[]{"Configurações", "Multimídia", "Navegação"};
-    }
-
     public List<String> getHistoricoDeMensagens() {
         return List.of("Porta aberta", "Cinto desatado", "Revisão próxima");
-    }
-
-    public String getManual() {
-        return "1. Pressione o botão\n2. Aguarde 5 segundos\n3. Solte o botão";
-    }
-
-    public Painel getPainelReserva() {
-        return null;
     }
 
     public void simularFalha() {
