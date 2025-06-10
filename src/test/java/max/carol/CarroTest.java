@@ -111,6 +111,11 @@ public class CarroTest {
     }
 
     @Test
+    public void testCombustivel() {
+        assertThrows(IllegalArgumentException.class, () -> combustivel.abastecer(-10));
+    }
+
+    @Test
     public void testSistemaDeDirecao() {
         assertThrows(IllegalArgumentException.class, () -> direcao.ajustarDirecao(-50));
     }
