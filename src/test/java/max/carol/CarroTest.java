@@ -16,6 +16,7 @@ public class CarroTest {
     private Bancos banco;
     private SistemaDeCombustivel combustivel;
     private Carro carro;
+    private Motor motor;
     private Luzes luzes;
     private Freios freio;
     private Portas portas;
@@ -29,12 +30,10 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
-        suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
-
-
+        
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -140,6 +139,12 @@ public class CarroTest {
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
 
+    @Test
+    public void testMotor() {
+        motor.desligar();
+        assertEquals("Motor desligado.", motor.verificarEstado());
+    }
+    
     @Test
     public void testQuantidadeDePortas() {
         assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
