@@ -16,6 +16,7 @@ public class CarroTest {
     private Bancos banco;
     private SistemaDeCombustivel combustivel;
     private Carro carro;
+    private Motor motor;
 
     @BeforeEach
     public void setUp() {
@@ -25,6 +26,7 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
+        motor = new Motor("V8", 50, 50, "Rossi", true);
 
         // Criação do carro com mocks básicos
         carro = new Carro(
@@ -118,6 +120,21 @@ public class CarroTest {
     @Test
     public void testSistemaDeDirecao() {
         assertThrows(IllegalArgumentException.class, () -> direcao.ajustarDirecao(-50));
+    }
+
+    /*
+    teste faltante
+     * motor
+painel
+portas
+suspensão
+transmissao
+     */
+
+    @Test
+    public void testMotor() {
+        motor.desligar();
+        assertEquals("Motor desligado.", motor.verificarEstado());
     }
 
 }
