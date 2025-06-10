@@ -97,4 +97,12 @@ public class CarroTest {
     public void testLigarCarroComTimeout() {
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
     }
+
+    // region testes por classes
+
+    @Test
+    public void testBanco(){
+        assertThrows(IllegalArgumentException.class, () -> banco.ajustarAltura(-50));
+    }
+
 }
