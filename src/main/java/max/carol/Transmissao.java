@@ -5,7 +5,7 @@ public class Transmissao {
         MarchaManual,
         MarchaAutomatica
     };
-    
+
     enum MarchaManual {
         R, N, M1, M2, M3, M4, M5;
     }
@@ -13,6 +13,7 @@ public class Transmissao {
     enum MarchaAutomatica {
         P, R, N, D;
     }
+
     private Tipos tipo;
     private int numeroDeMarchas;
     private String material;
@@ -21,12 +22,20 @@ public class Transmissao {
     private MarchaManual marchaManual;
     private MarchaAutomatica marchaAutomatica;
 
-
-    public Transmissao(Tipos tipo, int numeroDeMarchas, String material, String marca) {
+    public Transmissao(
+            Tipos tipo,
+            int numeroDeMarchas,
+            String material,
+            String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
     }
 
-    public Transmissao(Tipos tipo, int numeroDeMarchas, String material, String marca, boolean estado) {
+    public Transmissao(
+            Tipos tipo,
+            int numeroDeMarchas,
+            String material,
+            String marca,
+            boolean estado) {
         this.tipo = tipo;
         this.numeroDeMarchas = numeroDeMarchas;
         this.material = material;
@@ -50,7 +59,6 @@ public class Transmissao {
             System.out.println("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
     }
-
 
     public void verificarEstado() {
         if (estado) {

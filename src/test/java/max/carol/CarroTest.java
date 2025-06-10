@@ -19,20 +19,21 @@ public class CarroTest {
 
     @BeforeEach
     public void setUp() {
+        // Inicializa os componentes necessários para o teste do carro
         direcao = new SistemaDeDirecao();
         eletrico = new SistemaEletrico(true);
-        pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO); 
-        banco = new Bancos(5, "bom", "Couro", "preto","Couro Sintético" );
-        combustivel = new SistemaDeCombustivel("algo", 5, 50,"Ipiranga", true);
+        pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
+        banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
+        combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
 
-        // Criação do carro com mocks básicos
+        // Cria uma instância de carro com todos os sistemas e componentes
         carro = new Carro(
                 "Fiat Uno",
                 2020,
                 "Preto",
                 "ABC-1234",
                 50000,
-new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
+                new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
                 new Motor("algo", 50, 50, "Rossi", true),
                 new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica"),
                 new Painel("Digital", "Inicializando", true, "Genérico", false),
@@ -45,32 +46,30 @@ new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
                 new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO),
                 new Pneus(Pneus.posicaoPneu.DIANTEIRO_DIREITO),
                 new Pneus(Pneus.posicaoPneu.TRASEIRO_ESQUERDO),
-                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO)
-        );
+                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO));
     }
 
-    // 1. assertArrayEquals - SistemaDeDirecao::ComponentesPrincipais
+    // 1. Verifica se os componentes principais do sistema de direção estão corretos
     @Test
     public void testComponentesPrincipaisDirecao() {
-        String[] esperado = {"Volante", "Caixa de direção", "Coluna", "Bomba hidráulica"};
+        String[] esperado = { "Volante", "Caixa de direção", "Coluna", "Bomba hidráulica" };
         assertArrayEquals(esperado, direcao.ComponentesPrincipais());
     }
 
-    // 2. assertIterableEquals - SistemaDeDirecao::getChecklistManutencao
+    // 2. Verifica se o checklist de manutenção do sistema de direção corresponde ao esperado
     @Test
     public void testChecklistManutencaoDirecao() {
         List<String> esperado = List.of(
-            "Verificar fluido de direção",
-            "Inspecionar folgas no volante",
-            "Checar bomba hidráulica"
-        );
+                "Verificar fluido de direção",
+                "Inspecionar folgas no volante",
+                "Checar bomba hidráulica");
         assertIterableEquals(esperado, direcao.getChecklistManutencao());
     }
 
-    // 3. assertLinesMatch - SistemaEletrico::testarSistema (simulação)
+    // 3. Verifica se a saída do teste do sistema elétrico corresponde à esperada
     @Test
     public void testSaidaSistemaEletrico() {
-        // Redirecionando saída para capturar o println
+        // Redireciona a saída padrão para capturar o que é impresso no console
         java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
         System.setOut(new java.io.PrintStream(outContent));
 
@@ -81,19 +80,19 @@ new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
         assertLinesMatch(esperado, real);
     }
 
-    // 4. assertNull - Pneus::getEstepeReserva
+    // 4. Verifica que o pneu não possui estepe reserva (espera null)
     @Test
     public void testEstepeReservaPneu() {
         assertNull(pneu.getEstepeReserva());
     }
 
-    // 5. assertThrows - Bancos::ajustarEncosto
+    // 5. Verifica se a exceção IllegalStateException é lançada ao ajustar o encosto com valor inválido
     @Test
     public void testAjustarEncostoComValorInvalido() {
         assertThrows(IllegalStateException.class, () -> banco.ajustarEncosto(""));
     }
 
-    // 6. assertTimeout - Carro::ligar
+    // 6. Verifica que o método carro.ligar() executa dentro de 100 milissegundos
     @Test
     public void testLigarCarroComTimeout() {
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());

@@ -12,7 +12,13 @@ public class Freios {
     private boolean freioDeMaoAtivo;
 
     // Construtor completo
-    public Freios(String tipo, String material, double tamanho, String marca, double nivelDeDesgaste, boolean freioDeMaoAtivo) {
+    public Freios(
+            String tipo,
+            String material,
+            double tamanho,
+            String marca,
+            double nivelDeDesgaste,
+            boolean freioDeMaoAtivo) {
         this.tipo = tipo;
         this.material = material;
         this.tamanho = tamanho;
@@ -25,7 +31,7 @@ public class Freios {
         return nivelDeDesgaste;
     }
 
-    public boolean verificarfreioDeMao(){
+    public boolean verificarfreioDeMao() {
         return this.freioDeMaoAtivo;
     }
 
@@ -56,7 +62,7 @@ public class Freios {
     }
 
     public String[] getTiposDisponiveis() {
-        return new String[]{"disco", "tambor", "hidráulico"};
+        return new String[] { "disco", "tambor", "hidráulico" };
     }
 
     public List<String> getMarcasRecomendadas() {
@@ -78,7 +84,8 @@ public class Freios {
     public void operacaoDemorada() {
         try {
             Thread.sleep(1000);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
     // Getters

@@ -63,8 +63,7 @@ public class Carro {
             Pneus pneuDianteEsquerdo,
             Pneus pneuDianteiroDireito,
             Pneus pneuTraseiroEsquerdo,
-            Pneus pneuTraseiroDireito
-    ) {
+            Pneus pneuTraseiroDireito) {
 
         if (modelo == null || modelo.isEmpty()) {
             throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
@@ -124,7 +123,7 @@ public class Carro {
         this.sistemaDeDirecao = sistemaDeDirecao;
         this.suspensao = suspensao;
         this.painel = painel;
-        this.velocidadeMaxima = 200; 
+        this.velocidadeMaxima = 200;
     }
 
     public void ligar() {
@@ -233,7 +232,6 @@ public class Carro {
         }
         return "Buzina acionada!";
     }
-    
 
     // Getters
 
@@ -261,7 +259,7 @@ public class Carro {
         return ligado;
     }
 
-     public Bancos getBancos() {
+    public Bancos getBancos() {
         return bancos;
     }
 

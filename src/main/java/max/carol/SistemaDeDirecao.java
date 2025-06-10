@@ -11,7 +11,12 @@ public class SistemaDeDirecao {
     private String marca;
 
     // ✅ Construtor com todos os parâmetros
-    public SistemaDeDirecao(String tipo, boolean assistido, String material, double relacao, String marca) {
+    public SistemaDeDirecao(
+            String tipo,
+            boolean assistido,
+            String material,
+            double relacao,
+            String marca) {
         this.tipo = tipo;
         this.assistido = assistido;
         this.material = material;
@@ -39,15 +44,14 @@ public class SistemaDeDirecao {
     // Métodos auxiliares para testes JUnit
 
     public String[] ComponentesPrincipais() {
-        return new String[]{"Volante", "Caixa de direção", "Coluna", "Bomba hidráulica"};
+        return new String[] { "Volante", "Caixa de direção", "Coluna", "Bomba hidráulica" };
     }
 
     public List<String> getChecklistManutencao() {
         return List.of(
-            "Verificar fluido de direção",
-            "Inspecionar folgas no volante",
-            "Checar bomba hidráulica"
-        );
+                "Verificar fluido de direção",
+                "Inspecionar folgas no volante",
+                "Checar bomba hidráulica");
     }
 
     public String getInstrucoesDeManuseio() {
@@ -65,7 +69,8 @@ public class SistemaDeDirecao {
     public void testeDemorado() {
         try {
             Thread.sleep(800);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
     // Getters

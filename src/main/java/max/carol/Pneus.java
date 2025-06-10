@@ -19,7 +19,13 @@ public class Pneus {
     private posicaoPneu posicao;
 
     // Construtor principal
-    public Pneus(String tamanho, String tipo, double pressao, String marca, String estado, posicaoPneu posicaoPneu) {
+    public Pneus(
+            String tamanho,
+            String tipo,
+            double pressao,
+            String marca,
+            String estado,
+            posicaoPneu posicaoPneu) {
         this.tamanho = tamanho;
         this.tipo = tipo;
         this.pressao = pressao;
@@ -45,9 +51,8 @@ public class Pneus {
         System.out.println("O pneu " + marca + " foi substituído.");
     }
 
-
     public String[] getModelosDisponiveis() {
-        return new String[] {"Pirelli", "Michelin", "Goodyear"};
+        return new String[] { "Pirelli", "Michelin", "Goodyear" };
     }
 
     public List<String> getAvisosDeUso() {

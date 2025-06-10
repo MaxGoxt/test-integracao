@@ -1,14 +1,19 @@
 package max.carol;
 
 public class Suspensao {
-    
+
     private String tipo;
     private String material;
     private double altura;
     private int rigidez;
     private String marca;
 
-    public Suspensao(String tipo, String material, double altura, int rigidez, String marca) {
+    public Suspensao(
+            String tipo,
+            String material,
+            double altura,
+            int rigidez,
+            String marca) {
         this.tipo = tipo;
         this.material = material;
         this.altura = altura;
@@ -33,7 +38,7 @@ public class Suspensao {
     public String[] getNomesGetters() {
         return new String[] { "getTipo", "getMaterial", "getMarca" };
     }
-    
+
     public Object[] getValoresAtributos() {
         return new Object[] { tipo, material, marca };
     }
