@@ -42,9 +42,10 @@ public class Pneus {
         System.out.println("A pressão do pneu " + marca + " é: " + pressao + " psi.");
     }
 
-    public void ajustarPressao(double novaPressao) {
+    public String ajustarPressao(double novaPressao) {
         this.pressao = novaPressao;
         System.out.println("A pressão do pneu " + marca + " foi ajustada para: " + pressao + " psi.");
+        return "Pressão ajustada com sucesso!";
     }
 
     public void substituir() {

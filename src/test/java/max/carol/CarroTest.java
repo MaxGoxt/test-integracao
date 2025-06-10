@@ -106,6 +106,11 @@ public class CarroTest {
     }
 
     @Test
+    public void testPneu() {
+        assertEquals("Pressão ajustada com sucesso!" , pneu.ajustarPressao(30));
+    }
+
+    @Test
     public void testSistemaDeDirecao() {
         assertThrows(IllegalArgumentException.class, () -> direcao.ajustarDirecao(-50));
     }
