@@ -18,6 +18,7 @@ public class CarroTest {
     private Carro carro;
     private Luzes luzes;
     private Freios freio;
+    private Portas portas;
     
 
     @BeforeEach
@@ -30,7 +31,8 @@ public class CarroTest {
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
         Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
-
+        portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+        
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -135,5 +137,12 @@ public class CarroTest {
         freio.ativarFreiodemao();
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
+
+    @Test
+    public void testQuantidadeDePortas() {
+    Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+    assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
+}
+
 
 }
