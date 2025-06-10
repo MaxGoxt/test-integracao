@@ -20,11 +20,8 @@ public class CarroTest {
     private Luzes luzes;
     private Freios freio;
     private Portas portas;
-<<<<<<< HEAD
-=======
     private Suspensao suspensao;
     private Painel painel;
->>>>>>> 07a811ab56b191d5705382badc2be2e84fac4ebd
 
     @BeforeEach
     public void setUp() {
@@ -34,7 +31,7 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
