@@ -29,6 +29,10 @@ public class SistemaDeCombustivel {
     }
 
     public void abastecer(double quantidade) {
+        if (quantidade <= 0) {
+            System.out.println("Quantidade inválida para abastecimento.");
+            throw new IllegalArgumentException("Quantidade deve ser maior que zero.");
+        }
         if (nivelDeCombustivel + quantidade <= capacidade) {
             nivelDeCombustivel += quantidade;
             System.out.println(

@@ -121,6 +121,16 @@ public class CarroTest {
     }
 
     @Test
+    public void testPneu() {
+        assertEquals("Pressão ajustada com sucesso!" , pneu.ajustarPressao(30));
+    }
+
+    @Test
+    public void testCombustivel() {
+        assertThrows(IllegalArgumentException.class, () -> combustivel.abastecer(-10));
+    }
+
+    @Test
     public void testAtivarFreioDeMao() {
         freio.ativarFreiodemao();
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
