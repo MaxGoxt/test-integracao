@@ -163,7 +163,7 @@ public class Carro {
     public String desligar() {
         if (ligado) {
             ligado = false;
-            velocidade = 0; // Reseta a velocidade ao desligar
+            velocidade = 0;
             return "Carro desligado.";
         } else {
             return "Carro já está desligado.";
@@ -194,7 +194,7 @@ public class Carro {
         }
 
         if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
-            velocidade += 10; // Aumenta a velocidade em 10 km/h
+            velocidade += 10; 
             return "Carro acelerando...";
         }
 
@@ -202,7 +202,7 @@ public class Carro {
             return "Carro em ponto morto. Mude a marcha para acelerar.";
         }
 
-        velocidade += 10; // Aumenta a velocidade em 10 km/h
+        velocidade += 10; 
         return "Carro acelerando...";
     }
 
@@ -220,9 +220,9 @@ public class Carro {
             return "Sistema de freios não está disponível. Não é possível frear.";
         }
 
-        velocidade -= 10; // Diminui a velocidade em 10 km/h
+        velocidade -= 10; 
         if (velocidade < 0) {
-            velocidade = 0; // Garante que a velocidade não fique negativa
+            velocidade = 0; 
         }
         return "Carro freando...";
     }
@@ -235,7 +235,7 @@ public class Carro {
     }
     
 
-    // Getters
+ 
 
     public String getModelo() {
         return modelo;
@@ -269,7 +269,7 @@ public class Carro {
         this.bancos = bancos;
     }
 
-    // toString
+   
 
     @Override
     public String toString() {
