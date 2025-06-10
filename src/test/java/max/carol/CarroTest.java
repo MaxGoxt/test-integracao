@@ -20,6 +20,11 @@ public class CarroTest {
     private Luzes luzes;
     private Freios freio;
     private Portas portas;
+<<<<<<< HEAD
+=======
+    private Suspensao suspensao;
+    private Painel painel;
+>>>>>>> 07a811ab56b191d5705382badc2be2e84fac4ebd
 
     @BeforeEach
     public void setUp() {
@@ -29,10 +34,11 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-        motor = new Motor("V8", 50, 50, "Rossi", true);
-        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+        painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
+
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -107,6 +113,7 @@ public class CarroTest {
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
     }
 
+    //luzes
     @Test
     public void testAjustarIntensidadeLuz() {
         // Verifica o valor inicial da intensidade
@@ -122,34 +129,49 @@ public class CarroTest {
         assertEquals(80, luzes.getIntensidade(), "A intensidade da luz não foi ajustada corretamente.");
     }
 
+    //teste pneu
     @Test
     public void testPneu() {
         assertEquals("Pressão ajustada com sucesso!", pneu.ajustarPressao(30));
     }
 
+    //teste sistema de combustivel
     @Test
     public void testCombustivel() {
         assertThrows(IllegalArgumentException.class, () -> combustivel.abastecer(-10));
     }
 
+    //teste freios
     @Test
     public void testAtivarFreioDeMao() {
         freio.ativarFreiodemao();
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
 
+    //teste motor
     @Test
     public void testMotor() {
         motor.desligar();
         assertEquals("Motor desligado.", motor.verificarEstado());
     }
-
+    //teste portas
     @Test
     public void testQuantidadeDePortas() {
-        Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
         assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
     }
 
+    //teste suspensao
+    @Test
+    public void testVerificarEstadoSuspensao() {
+        assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado"));
+    }
+
+    //teste painel
+    @Test
+    public void testOperacaoDemoradaTimeout() {
+        assertTimeout(Duration.ofSeconds(2), () -> painel.operacaoDemorada());
+    }
+    
     @Test
     public void testTransmissao() {
         Transmissao transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
