@@ -19,7 +19,7 @@ public class CarroTest {
     private Luzes luzes;
     private Freios freio;
     private Portas portas;
-    
+    private Suspensao suspensao;
 
     @BeforeEach
     public void setUp() {
@@ -29,10 +29,12 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
-        
+        suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
+
+
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -124,7 +126,7 @@ public class CarroTest {
 
     @Test
     public void testPneu() {
-        assertEquals("Pressão ajustada com sucesso!" , pneu.ajustarPressao(30));
+        assertEquals("Pressão ajustada com sucesso!", pneu.ajustarPressao(30));
     }
 
     @Test
@@ -140,9 +142,12 @@ public class CarroTest {
 
     @Test
     public void testQuantidadeDePortas() {
-    Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
-    assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
-}
+        assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
+    }
 
+    @Test
+    public void testVerificarEstadoSuspensao() {
+        assertTrue(suspensao.verificarEstado().contains("bom estado"));
+    }
 
 }
