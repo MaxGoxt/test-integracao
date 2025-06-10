@@ -20,7 +20,6 @@ public class CarroTest {
     private Luzes luzes;
     private Freios freio;
     private Portas portas;
-    
 
     @BeforeEach
     public void setUp() {
@@ -125,7 +124,7 @@ public class CarroTest {
 
     @Test
     public void testPneu() {
-        assertEquals("Pressão ajustada com sucesso!" , pneu.ajustarPressao(30));
+        assertEquals("Pressão ajustada com sucesso!", pneu.ajustarPressao(30));
     }
 
     @Test
@@ -144,12 +143,16 @@ public class CarroTest {
         motor.desligar();
         assertEquals("Motor desligado.", motor.verificarEstado());
     }
-    
+
     @Test
     public void testQuantidadeDePortas() {
-    Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
-    assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
-}
+        Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+        assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
+    }
 
-
+    @Test
+    public void testTransmissao() {
+        Transmissao transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
+        assertThrows(IllegalArgumentException.class, () -> transmissao.trocarMarcha(-5));
+    }
 }

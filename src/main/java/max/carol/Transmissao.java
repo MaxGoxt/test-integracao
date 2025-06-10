@@ -48,15 +48,18 @@ public class Transmissao {
         }
     }
 
-    public void trocarMarcha(int marcha) {
+    public String trocarMarcha(int marcha) {
         if (estado) {
             if (marcha >= 1 && marcha <= numeroDeMarchas) {
                 System.out.println("Marcha trocada para: " + marcha);
+                return "Marcha trocada para: " + marcha;
             } else {
                 System.out.println("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
+                throw new IllegalArgumentException("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
             }
         } else {
             System.out.println("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
+            throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
     }
 
