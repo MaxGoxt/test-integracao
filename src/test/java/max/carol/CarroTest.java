@@ -105,4 +105,9 @@ public class CarroTest {
         assertThrows(IllegalArgumentException.class, () -> banco.ajustarAltura(-50));
     }
 
+    @Test
+    public void testSistemaDeDirecao() {
+        assertThrows(IllegalArgumentException.class, () -> direcao.ajustarDirecao(-50));
+    }
+
 }

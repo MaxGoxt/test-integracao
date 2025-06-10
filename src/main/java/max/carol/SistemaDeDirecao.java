@@ -8,6 +8,9 @@ public class SistemaDeDirecao {
     private boolean assistido;
     private String material;
     private double relacao;
+    private double anguloMaximo;
+    private double anguloMinimo;
+    private double angulo;
     private String marca;
 
     // ✅ Construtor com todos os parâmetros
@@ -22,6 +25,9 @@ public class SistemaDeDirecao {
         this.material = material;
         this.relacao = relacao;
         this.marca = marca;
+        this.angulo = 0.0;
+        this.anguloMaximo = 45.0;
+        this.anguloMinimo = -45.0;
     }
 
     // ✅ Construtor padrão com valores genéricos
@@ -30,6 +36,10 @@ public class SistemaDeDirecao {
     }
 
     public void ajustarDirecao(double angulo) {
+        if (angulo < anguloMinimo || angulo > anguloMaximo) {
+            throw new IllegalArgumentException("Ângulo fora do intervalo permitido: " + angulo);
+        }
+        this.angulo = angulo;
         System.out.println("Direção ajustada para o ângulo: " + angulo + " graus.");
     }
 
