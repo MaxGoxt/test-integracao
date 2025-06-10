@@ -16,13 +16,11 @@ public class CarroTest {
     private Bancos banco;
     private SistemaDeCombustivel combustivel;
     private Carro carro;
-<<<<<<< HEAD
     private Motor motor;
-=======
     private Luzes luzes;
     private Freios freio;
+    private Portas portas;
     
->>>>>>> bc19573aa3f0b88f5def2e1f809cdd40463b1ae6
 
     @BeforeEach
     public void setUp() {
@@ -32,13 +30,10 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-<<<<<<< HEAD
         motor = new Motor("V8", 50, 50, "Rossi", true);
-=======
-        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
->>>>>>> bc19573aa3f0b88f5def2e1f809cdd40463b1ae6
-
+        portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -144,19 +139,17 @@ public class CarroTest {
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
 
-    /*
-    teste faltante
-     * motor
-painel
-portas
-suspensão
-transmissao
-     */
-
     @Test
     public void testMotor() {
         motor.desligar();
         assertEquals("Motor desligado.", motor.verificarEstado());
     }
+    
+    @Test
+    public void testQuantidadeDePortas() {
+    Portas portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+    assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
+}
+
 
 }
