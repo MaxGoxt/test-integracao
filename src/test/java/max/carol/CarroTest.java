@@ -21,6 +21,7 @@ public class CarroTest {
     private Freios freio;
     private Portas portas;
     private Suspensao suspensao;
+    private Painel painel;
 
     @BeforeEach
     public void setUp() {
@@ -33,7 +34,8 @@ public class CarroTest {
         Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
-        
+        painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
+
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -144,7 +146,7 @@ public class CarroTest {
         motor.desligar();
         assertEquals("Motor desligado.", motor.verificarEstado());
     }
-    
+
     @Test
     public void testQuantidadeDePortas() {
         assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
@@ -152,7 +154,12 @@ public class CarroTest {
 
     @Test
     public void testVerificarEstadoSuspensao() {
-        assertTrue(suspensao.verificarEstado().contains("bom estado"));
+        assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado"));
+    }
+
+    @Test
+    public void testOperacaoDemoradaTimeout() {
+        assertTimeout(Duration.ofSeconds(2), () -> painel.operacaoDemorada());
     }
 
 }
