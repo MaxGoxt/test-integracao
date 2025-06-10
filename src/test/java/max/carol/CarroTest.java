@@ -16,7 +16,13 @@ public class CarroTest {
     private Bancos banco;
     private SistemaDeCombustivel combustivel;
     private Carro carro;
+<<<<<<< HEAD
     private Motor motor;
+=======
+    private Luzes luzes;
+    private Freios freio;
+    
+>>>>>>> bc19573aa3f0b88f5def2e1f809cdd40463b1ae6
 
     @BeforeEach
     public void setUp() {
@@ -26,7 +32,12 @@ public class CarroTest {
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
+<<<<<<< HEAD
         motor = new Motor("V8", 50, 50, "Rossi", true);
+=======
+        Freios freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+        luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
+>>>>>>> bc19573aa3f0b88f5def2e1f809cdd40463b1ae6
 
         // Criação do carro com mocks básicos
         carro = new Carro(
@@ -58,7 +69,8 @@ public class CarroTest {
         assertArrayEquals(esperado, direcao.ComponentesPrincipais());
     }
 
-    // 2. Verifica se o checklist de manutenção do sistema de direção corresponde ao esperado
+    // 2. Verifica se o checklist de manutenção do sistema de direção corresponde ao
+    // esperado
     @Test
     public void testChecklistManutencaoDirecao() {
         List<String> esperado = List.of(
@@ -88,7 +100,8 @@ public class CarroTest {
         assertNull(pneu.getEstepeReserva());
     }
 
-    // 5. Verifica se a exceção IllegalStateException é lançada ao ajustar o encosto com valor inválido
+    // 5. Verifica se a exceção IllegalStateException é lançada ao ajustar o encosto
+    // com valor inválido
     @Test
     public void testAjustarEncostoComValorInvalido() {
         assertThrows(IllegalStateException.class, () -> banco.ajustarEncosto(""));
@@ -100,11 +113,19 @@ public class CarroTest {
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
     }
 
-    // region testes por classes
-
     @Test
-    public void testBanco(){
-        assertThrows(IllegalArgumentException.class, () -> banco.ajustarAltura(-50));
+    public void testAjustarIntensidadeLuz() {
+        // Verifica o valor inicial da intensidade
+        assertEquals(100, luzes.getIntensidade(), "A intensidade inicial não é a esperada.");
+
+        // Ajusta a intensidade para 80
+        String resultado = luzes.ajustarIntensidade(80);
+
+        // Verifica se o método retornou a mensagem correta
+        assertEquals("Intensidade ajustada para: 80", resultado, "A mensagem de intensidade não é a esperada.");
+
+        // Verifica se a intensidade foi alterada corretamente
+        assertEquals(80, luzes.getIntensidade(), "A intensidade da luz não foi ajustada corretamente.");
     }
 
     @Test
@@ -118,8 +139,9 @@ public class CarroTest {
     }
 
     @Test
-    public void testSistemaDeDirecao() {
-        assertThrows(IllegalArgumentException.class, () -> direcao.ajustarDirecao(-50));
+    public void testAtivarFreioDeMao() {
+        freio.ativarFreiodemao();
+        assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
 
     /*

@@ -65,6 +65,8 @@ public class Carro {
             Pneus pneuTraseiroEsquerdo,
             Pneus pneuTraseiroDireito) {
 
+            
+
         if (modelo == null || modelo.isEmpty()) {
             throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
         }
