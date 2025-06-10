@@ -26,7 +26,7 @@ public class CarroTest {
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
 
-        // Cria uma instância de carro com todos os sistemas e componentes
+        // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
                 2020,
