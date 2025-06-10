@@ -10,8 +10,12 @@ public class Motor {
     private String marca;
     private boolean estado;
 
-
-    public Motor(String tipo, int potencia, double cilindrada, String marca, boolean estado) {
+    public Motor(
+            String tipo,
+            int potencia,
+            double cilindrada,
+            String marca,
+            boolean estado) {
         this.tipo = tipo;
         this.potencia = potencia;
         this.cilindrada = cilindrada;

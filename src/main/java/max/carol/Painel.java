@@ -9,14 +9,18 @@ public class Painel {
     private String marca;
     private boolean estado;
 
-    public Painel(String tipo, String display, boolean controle, String marca, boolean estado) {
+    public Painel(
+            String tipo,
+            String display,
+            boolean controle,
+            String marca,
+            boolean estado) {
         this.tipo = tipo;
         this.display = display;
         this.controle = controle;
         this.marca = marca;
         this.estado = estado;
     }
-
 
     public void ligarDisplay() {
         estado = true;
@@ -50,7 +54,8 @@ public class Painel {
     public void operacaoDemorada() {
         try {
             Thread.sleep(1200);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
     // Getters

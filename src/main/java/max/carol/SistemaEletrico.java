@@ -9,7 +9,12 @@ public class SistemaEletrico {
     private String marca;
 
     // ✅ Construtor completo (já existente)
-    public SistemaEletrico(double voltagem, double capacidade, String tipoDeBateria, boolean estado, String marca) {
+    public SistemaEletrico(
+            double voltagem,
+            double capacidade,
+            String tipoDeBateria,
+            boolean estado,
+            String marca) {
         this.voltagem = voltagem;
         this.capacidade = capacidade;
         this.tipoDeBateria = tipoDeBateria;
@@ -17,7 +22,8 @@ public class SistemaEletrico {
         this.marca = marca;
     }
 
-    // ✅ Novo construtor com apenas o estado (para uso com `new SistemaEletrico(true)`)
+    // ✅ Novo construtor com apenas o estado (para uso com `new
+    // SistemaEletrico(true)`)
     public SistemaEletrico(boolean estado) {
         this(12.0, 60.0, "Chumbo-ácido", estado, "Moura");
     }

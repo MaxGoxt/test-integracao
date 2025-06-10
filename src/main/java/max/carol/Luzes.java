@@ -9,8 +9,13 @@ public class Luzes {
     private String modelo;
     private String luzDeFreioLigada;
 
-
-    public Luzes(String tipo, int intensidade, String cor, boolean estado, String modelo, String luzDeFreioLigada) {
+    public Luzes(
+            String tipo,
+            int intensidade,
+            String cor,
+            boolean estado,
+            String modelo,
+            String luzDeFreioLigada) {
         this.tipo = tipo;
         this.intensidade = intensidade;
         this.cor = cor;
@@ -18,6 +23,7 @@ public class Luzes {
         this.modelo = modelo;
         this.luzDeFreioLigada = luzDeFreioLigada;
     }
+
     public String ligar() {
         estado = true;
         return "Luzes ligadas.";

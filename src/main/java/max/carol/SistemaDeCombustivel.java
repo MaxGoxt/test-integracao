@@ -11,7 +11,12 @@ public class SistemaDeCombustivel {
     private boolean estado;
 
     // Construtor completo
-    public SistemaDeCombustivel(String tipoDeCombustivel, double capacidade, double nivelDeCombustivel, String marca, boolean estado) {
+    public SistemaDeCombustivel(
+            String tipoDeCombustivel,
+            double capacidade,
+            double nivelDeCombustivel,
+            String marca,
+            boolean estado) {
         this.tipoDeCombustivel = tipoDeCombustivel;
         this.capacidade = capacidade;
         this.nivelDeCombustivel = nivelDeCombustivel;
@@ -26,7 +31,8 @@ public class SistemaDeCombustivel {
     public void abastecer(double quantidade) {
         if (nivelDeCombustivel + quantidade <= capacidade) {
             nivelDeCombustivel += quantidade;
-            System.out.println("Abastecido com " + quantidade + " litros. Nível atual: " + nivelDeCombustivel + " litros.");
+            System.out.println(
+                    "Abastecido com " + quantidade + " litros. Nível atual: " + nivelDeCombustivel + " litros.");
         } else {
             System.out.println("Quantidade excede a capacidade do tanque.");
         }
@@ -39,15 +45,14 @@ public class SistemaDeCombustivel {
     // Métodos auxiliares para testes JUnit
 
     public String[] getTiposDeCombustivelDisponiveis() {
-        return new String[]{"Gasolina", "Etanol", "Diesel", "GNV"};
+        return new String[] { "Gasolina", "Etanol", "Diesel", "GNV" };
     }
 
     public List<String> getRegrasDeSeguranca() {
         return List.of(
-            "Não fume durante o abastecimento",
-            "Desligue o motor ao abastecer",
-            "Evite transbordamento"
-        );
+                "Não fume durante o abastecimento",
+                "Desligue o motor ao abastecer",
+                "Evite transbordamento");
     }
 
     public String getInstrucoesDeUso() {
@@ -65,7 +70,8 @@ public class SistemaDeCombustivel {
     public void abastecimentoDemorado() {
         try {
             Thread.sleep(900);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
     // Getters

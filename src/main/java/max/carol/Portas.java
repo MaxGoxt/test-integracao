@@ -9,7 +9,12 @@ public class Portas {
     private String tipo;
     private String estado;
 
-    public Portas(int quantidade, String material, String cor, String tipo, String estado) {
+    public Portas(
+            int quantidade,
+            String material,
+            String cor,
+            String tipo,
+            String estado) {
         this.quantidade = quantidade;
         this.material = material;
         this.cor = cor;
@@ -42,15 +47,14 @@ public class Portas {
     // Métodos auxiliares para testes
 
     public String[] getTiposDisponiveis() {
-        return new String[]{"corrediça", "suicida", "asa de gaivota"};
+        return new String[] { "corrediça", "suicida", "asa de gaivota" };
     }
 
     public List<String> getRegrasSeguranca() {
         return List.of(
-            "Mantenha as portas travadas em movimento",
-            "Não abra as portas com o carro em movimento",
-            "Verifique se as portas estão fechadas antes de sair"
-        );
+                "Mantenha as portas travadas em movimento",
+                "Não abra as portas com o carro em movimento",
+                "Verifique se as portas estão fechadas antes de sair");
     }
 
     public String getManualUso() {
@@ -68,7 +72,8 @@ public class Portas {
     public void abrirDemoradamente() {
         try {
             Thread.sleep(900);
-        } catch (InterruptedException ignored) {}
+        } catch (InterruptedException ignored) {
+        }
     }
 
     // Getters

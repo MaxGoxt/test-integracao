@@ -11,7 +11,6 @@ public class Bancos {
     private String posicaoEncosto;
     private double alturaBanco;
 
-
     // Construtor completo
     public Bancos(int quantidade, String estado, String material, String cor, String tipo) {
         this.quantidade = quantidade;
@@ -48,7 +47,7 @@ public class Bancos {
     }
 
     public String[] getMateriaisDisponiveis() {
-        return new String[]{"couro", "tecido", "sintético"};
+        return new String[] { "couro", "tecido", "sintético" };
     }
 
     public List<String> getCoresDisponiveis() {
