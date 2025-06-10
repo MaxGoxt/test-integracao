@@ -35,6 +35,7 @@ public class CarroTest {
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
+        motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
 
         // Criação do carro com mocks básicos
         carro = new Carro(
