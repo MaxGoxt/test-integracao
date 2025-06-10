@@ -35,7 +35,7 @@ public class CarroTest {
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
         portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
-
+        suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -160,7 +160,7 @@ public class CarroTest {
     //teste suspensao
     @Test
     public void testVerificarEstadoSuspensao() {
-        assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado"));
+        assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado."));
     }
 
     //teste painel
