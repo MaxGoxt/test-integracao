@@ -27,7 +27,7 @@ public class CarroTest {
     public void setUp() {
         // Inicializa os componentes necessários para o teste do carro
         direcao = new SistemaDeDirecao();
-        eletrico = new SistemaEletrico(true);
+        eletrico = new SistemaEletrico(false);
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
@@ -37,7 +37,7 @@ public class CarroTest {
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
         motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
         suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
-        
+
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -108,7 +108,13 @@ public class CarroTest {
 
     // 6. Verifica que o método carro.ligar() executa dentro de 100 milissegundos
     @Test
-    public void testLigarCarroComTimeout() {
+    public void testLigarCarro() {
+
+        assertNotEquals(null, carro.sistemaEletrico);
+        assertNotEquals(null, carro.sistemaDeCombustivel);
+        assertNotEquals(null, carro.motor);
+
+        assertDoesNotThrow(() -> carro.ligar(), "O método ligar não deve lançar exceção.");
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
     }
 
