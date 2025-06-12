@@ -20,25 +20,25 @@ public class Carro {
      * • atualizarQuilometragem(double km): Atualiza a quilometragem do carro.
      */
 
-    private String modelo;
-    private int ano;
-    private String cor;
-    private String placa;
-    private double quilometragem;
-    private boolean ligado;
-    private Integer velocidade = 0; // Velocidade inicial do carro
-    private Integer velocidadeMaxima;
-    private Bancos bancos;
-    private Freios freios;
-    private Luzes luzes;
-    private Motor motor;
-    private Painel painel;
-    private List<Pneus> pneus; // Array de pneus
-    private SistemaDeCombustivel sistemaDeCombustivel;
-    private SistemaDeDirecao sistemaDeDirecao;
-    private SistemaEletrico sistemaEletrico;
-    private Suspensao suspensao;
-    private Transmissao transmissao;
+    public String modelo;
+    public int ano;
+    public String cor;
+    public String placa;
+    public double quilometragem;
+    public boolean ligado;
+    public Integer velocidade = 0; // Velocidade inicial do carro
+    public Integer velocidadeMaxima;
+    public Bancos bancos;
+    public Freios freios;
+    public Luzes luzes;
+    public Motor motor;
+    public Painel painel;
+    public List<Pneus> pneus; // Array de pneus
+    public SistemaDeCombustivel sistemaDeCombustivel;
+    public SistemaDeDirecao sistemaDeDirecao;
+    public SistemaEletrico sistemaEletrico;
+    public Suspensao suspensao;
+    public Transmissao transmissao;
 
     public static void main(String[] args) {
         System.out.println("Carro.java");
