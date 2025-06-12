@@ -110,15 +110,15 @@ public class CarroTest {
     @Test
     public void testLigarCarro() {
 
-        assertNotEquals(null, carro.sistemaEletrico);
-        assertNotEquals(null, carro.sistemaDeCombustivel);
-        assertNotEquals(null, carro.motor);
-
-        assertDoesNotThrow(() -> carro.ligar(), "O método ligar não deve lançar exceção.");
-        assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
+        assertAll(
+                () -> assertNotEquals(null, carro.sistemaEletrico),
+                () -> assertNotEquals(null, carro.sistemaDeCombustivel),
+                () -> assertNotEquals(null, carro.motor),
+                () -> assertDoesNotThrow(() -> carro.ligar(), "O método ligar não deve lançar exceção."),
+                () -> assertTimeout(Duration.ofMillis(100), () -> carro.ligar()));
     }
 
-    //luzes
+    // luzes
     @Test
     public void testAjustarIntensidadeLuz() {
         // Verifica o valor inicial da intensidade
@@ -134,49 +134,50 @@ public class CarroTest {
         assertEquals(80, luzes.getIntensidade(), "A intensidade da luz não foi ajustada corretamente.");
     }
 
-    //teste pneu
+    // teste pneu
     @Test
     public void testPneu() {
         assertEquals("Pressão ajustada com sucesso!", pneu.ajustarPressao(30));
     }
 
-    //teste sistema de combustivel
+    // teste sistema de combustivel
     @Test
     public void testCombustivel() {
         assertThrows(IllegalArgumentException.class, () -> combustivel.abastecer(-10));
     }
 
-    //teste freios
+    // teste freios
     @Test
     public void testAtivarFreioDeMao() {
         freio.ativarFreiodemao();
         assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
     }
 
-    //teste motor
+    // teste motor
     @Test
     public void testMotor() {
         motor.desligar();
         assertEquals("Motor desligado.", motor.verificarEstado());
     }
-    //teste portas
+
+    // teste portas
     @Test
     public void testQuantidadeDePortas() {
         assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
     }
 
-    //teste suspensao
+    // teste suspensao
     @Test
     public void testVerificarEstadoSuspensao() {
         assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado."));
     }
 
-    //teste painel
+    // teste painel
     @Test
     public void testOperacaoDemoradaTimeout() {
         assertTimeout(Duration.ofSeconds(2), () -> painel.operacaoDemorada());
     }
-    
+
     @Test
     public void testTransmissao() {
         Transmissao transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
