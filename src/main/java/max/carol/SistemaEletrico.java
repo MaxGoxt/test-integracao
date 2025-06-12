@@ -22,8 +22,7 @@ public class SistemaEletrico {
         this.marca = marca;
     }
 
-    // ✅ Novo construtor com apenas o estado (para uso com `new
-    // SistemaEletrico(true)`)
+
     public SistemaEletrico(boolean estado) {
         this(12.0, 60.0, "Chumbo-ácido", estado, "Moura");
     }
