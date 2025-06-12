@@ -27,7 +27,7 @@ public class CarroTest {
     public void setUp() {
         // Inicializa os componentes necessários para o teste do carro
         direcao = new SistemaDeDirecao();
-        eletrico = new SistemaEletrico(false);
+        eletrico = new SistemaEletrico(true);
         pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
         banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
@@ -37,7 +37,7 @@ public class CarroTest {
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
         motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
         suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
-
+        
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -95,7 +95,7 @@ public class CarroTest {
 
     // 4. Verifica que o pneu não possui estepe reserva (espera null)
     @Test
-    public void testEstepeReservaPneu() {
+    public void testEstepeReservaPneu() { // arrumar
         assertNull(pneu.getEstepeReserva());
     }
 
@@ -174,7 +174,7 @@ public class CarroTest {
 
     // teste painel
     @Test
-    public void testOperacaoDemoradaTimeout() {
+    public void testLigarPainel() {
         assertTimeout(Duration.ofSeconds(2), () -> painel.operacaoDemorada());
     }
 
