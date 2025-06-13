@@ -120,8 +120,9 @@ public class CarroTest {
                                                 "Painel deve exibir 'Acelerando...'"));
         }
 
+       // verificarVelocidadeMaximaPorMarcha
         @Test
-        void verificarVelocidadeMaximaPorMarcha() {
+        void verificar_Velocidade_Maxima_Por_Marcha() {
                 // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
                 // Map do enum Marcha para número da marcha
                 Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
@@ -173,8 +174,9 @@ public class CarroTest {
                 }
         }
 
+        //portaAbertaDeveImpedirAceleracaoEAposFecharPermitir
         @Test
-        void portaAbertaDeveImpedirAceleracaoEAposFecharPermitir() {
+        void porta_Aberta_Deve_Impedir_Aceleracao() {
                 carro.portas.abrirPorta(0); // Porta aberta
 
                 assertThrows(IllegalStateException.class, carro::acelerar,
@@ -192,8 +194,9 @@ public class CarroTest {
                 assertEquals(10, carro.getVelocidade());
         }
 
+        //bateriaQuaseFracaAindaImpedeLigacaoDasLuzes
         @Test
-        void bateriaQuaseFracaAindaImpedeLigacaoDasLuzes() {
+        void bateria_fraca_desligar_lizes() {
                 carro.getSistemaEletrico().setNivelCarga(25);
                 carro.ligar();
 

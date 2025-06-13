@@ -255,6 +255,7 @@ public class Carro {
                 painel.ligarDisplay(); // liga o display para mostrar a mensagem
                 painel.atualizarInformacoes("Erro: Bateria insuficiente");
             }
+            
             if (luzes != null) {
                 luzes.desligar(); // adiciona esse método em Luzes se ainda não existir
             }
