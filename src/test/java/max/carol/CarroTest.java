@@ -121,16 +121,6 @@ public class CarroTest {
     }
 
 
-    // 10. Verifica se o carro acelera corretamente
-    // @Test
-    // public void testAcelerarCarro() {
-    //     carro.ligar();
-    //     String resultado = carro.acelerar();
-    //     assertEquals("Carro acelerando.", resultado, "A mensagem de aceleração não é a esperada.");
-    //     assertTrue(carro.getVelocidade() > 0, "A velocidade do carro deve ser maior que zero após acelerar.");
-    // }
-    
-
 
     //luzes
     @Test
