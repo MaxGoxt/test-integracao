@@ -1,17 +1,28 @@
 package max.carol;
 
 public class Transmissao {
-    enum Tipos {
+
+    public enum Tipos {
         MarchaManual,
         MarchaAutomatica
-    };
+    }
 
-    enum MarchaManual {
+    // Supondo só manual para seu teste
+    public enum MarchaManual {
         R, N, M1, M2, M3, M4, M5;
     }
 
-    enum MarchaAutomatica {
+    public enum MarchaAutomatica {
         P, R, N, D;
+    }
+
+    // Enum pública para uso no teste e fora da classe
+    public enum Marcha {
+        PRIMEIRA,
+        SEGUNDA,
+        TERCEIRA,
+        QUARTA,
+        QUINTA
     }
 
     private Tipos tipo;
@@ -22,25 +33,17 @@ public class Transmissao {
     private MarchaManual marchaManual;
     private MarchaAutomatica marchaAutomatica;
 
-    public Transmissao(
-            Tipos tipo,
-            int numeroDeMarchas,
-            String material,
-            String marca) {
+    public Transmissao(Tipos tipo, int numeroDeMarchas, String material, String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
     }
 
-    public Transmissao(
-            Tipos tipo,
-            int numeroDeMarchas,
-            String material,
-            String marca,
-            boolean estado) {
+    public Transmissao(Tipos tipo, int numeroDeMarchas, String material, String marca, boolean estado) {
         this.tipo = tipo;
         this.numeroDeMarchas = numeroDeMarchas;
         this.material = material;
         this.marca = marca;
         this.estado = estado;
+
         if (tipo == Tipos.MarchaManual) {
             this.marchaManual = MarchaManual.N;
         } else if (tipo == Tipos.MarchaAutomatica) {
@@ -48,13 +51,51 @@ public class Transmissao {
         }
     }
 
-
-    public String trocarMarcha(int marcha) {
+    // Novo método para trocar marcha usando enum Marcha
+    public void trocarMarcha(Marcha marcha) {
         if (!estado) {
-            System.out.println("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
             throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
-    
+        if (tipo != Tipos.MarchaManual) {
+            throw new UnsupportedOperationException("Apenas transmissão manual suportada para troca por enum Marcha");
+        }
+        if (numeroDeMarchas < 5) {
+            throw new IllegalStateException("Número de marchas incompatível com a enum Marcha");
+        }
+
+        switch (marcha) {
+            case PRIMEIRA -> marchaManual = MarchaManual.M1;
+            case SEGUNDA -> marchaManual = MarchaManual.M2;
+            case TERCEIRA -> marchaManual = MarchaManual.M3;
+            case QUARTA -> marchaManual = MarchaManual.M4;
+            case QUINTA -> marchaManual = MarchaManual.M5;
+            default -> throw new IllegalArgumentException("Marcha inválida");
+        }
+        System.out.println("Marcha trocada para: " + marcha.name());
+    }
+
+    // Método para obter a marcha atual como enum Marcha
+    public Marcha getMarchaAtual() {
+        if (tipo != Tipos.MarchaManual) {
+            return null; // Ou lançar exceção, conforme seu projeto
+        }
+
+        return switch (marchaManual) {
+            case M1 -> Marcha.PRIMEIRA;
+            case M2 -> Marcha.SEGUNDA;
+            case M3 -> Marcha.TERCEIRA;
+            case M4 -> Marcha.QUARTA;
+            case M5 -> Marcha.QUINTA;
+            default -> null; // para N, R e outros
+        };
+    }
+
+    // Mantendo o método original para compatibilidade
+    public String trocarMarcha(int marcha) {
+        if (!estado) {
+            throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
+        }
+
         if (marcha >= 1 && marcha <= numeroDeMarchas) {
             if (tipo == Tipos.MarchaManual) {
                 switch (marcha) {
@@ -63,6 +104,7 @@ public class Transmissao {
                     case 3 -> marchaManual = MarchaManual.M3;
                     case 4 -> marchaManual = MarchaManual.M4;
                     case 5 -> marchaManual = MarchaManual.M5;
+                    default -> throw new IllegalArgumentException("Marcha inválida");
                 }
             } else if (tipo == Tipos.MarchaAutomatica) {
                 switch (marcha) {
@@ -70,33 +112,17 @@ public class Transmissao {
                     case 2 -> marchaAutomatica = MarchaAutomatica.R;
                     case 3 -> marchaAutomatica = MarchaAutomatica.N;
                     case 4 -> marchaAutomatica = MarchaAutomatica.P;
+                    default -> throw new IllegalArgumentException("Marcha inválida");
                 }
             }
-    
             System.out.println("Marcha trocada para: " + marcha);
             return "Marcha trocada para: " + marcha;
         } else {
-            System.out.println("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
             throw new IllegalArgumentException("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
         }
     }
-    
 
-
-    // public String trocarMarcha(int marcha) {
-    //     if (estado) {
-    //         if (marcha >= 1 && marcha <= numeroDeMarchas) {
-    //             System.out.println("Marcha trocada para: " + marcha);
-    //             return "Marcha trocada para: " + marcha;
-    //         } else {
-    //             System.out.println("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
-    //             throw new IllegalArgumentException("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
-    //         }
-    //     } else {
-    //         System.out.println("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
-    //         throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
-    //     }
-    // }
+    // Outros métodos mantidos
 
     public void verificarEstado() {
         if (estado) {
@@ -116,12 +142,10 @@ public class Transmissao {
         }
     }
 
-    // Método para simular falha
     public void falharSistema() {
         this.estado = false;
     }
 
-    // Getters
     public Tipos getTipo() {
         return this.tipo;
     }
@@ -138,6 +162,7 @@ public class Transmissao {
         return marca;
     }
 
+    // Retorna marcha manual ou automática, mas melhor usar getMarchaAtual()
     public Object getMarcha() {
         return marchaManual != null ? marchaManual : marchaAutomatica;
     }

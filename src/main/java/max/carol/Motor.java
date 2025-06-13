@@ -8,33 +8,33 @@ public class Motor {
     private int potencia;
     private double cilindrada;
     private String marca;
-    private boolean estado;
+    private boolean ligado;
 
     public Motor(
             String tipo,
             int potencia,
             double cilindrada,
             String marca,
-            boolean estado) {
+            boolean ligado) {
         this.tipo = tipo;
         this.potencia = potencia;
         this.cilindrada = cilindrada;
         this.marca = marca;
-        this.estado = estado;
+        this.ligado = ligado;
     }
 
     public String ligar() {
-        estado = true;
+        ligado = true;
         return "Motor ligado.";
     }
 
     public String desligar() {
-        estado = false;
+        ligado = false;
         return "Motor desligado.";
     }
 
-    public String verificarEstado() {
-        return estado ? "Motor em bom estado." : "Motor desligado.";
+    public String verificarLigado() {
+        return ligado ? "Motor em bom ligado." : "Motor desligado.";
     }
 
     // Métodos auxiliares para testes JUnit
@@ -69,7 +69,7 @@ public class Motor {
         return marca;
     }
 
-    public boolean isEstado() {
-        return estado;
+    public boolean isLigado() {
+        return ligado;
     }
 }

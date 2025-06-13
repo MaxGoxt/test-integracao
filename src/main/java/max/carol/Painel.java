@@ -10,6 +10,7 @@ public class Painel {
     private String marca;
     private boolean estado;
     private Painel painel;
+    private List<String> historicoDeMensagens;
     private List<String> mensagens = new ArrayList<>(); // <== ADICIONADO
 
     public Painel(
@@ -23,6 +24,8 @@ public class Painel {
         this.controle = controle;
         this.marca = marca;
         this.estado = estado;
+        this.historicoDeMensagens = new ArrayList<>(); // <<< Inicialização aqui
+
     }
 
     public void ligarDisplay() {
@@ -66,9 +69,18 @@ public class Painel {
         }
     }
 
-    // Getters
+    public void adicionarMensagem(String mensagem) {
+        // Armazena a mensagem no histórico
+        historicoDeMensagens.add(mensagem);
+        // Além disso, poderia imprimir ou atualizar a interface do painel
+        System.out.println("Painel: " + mensagem);
+    }
 
-    
+    public List<String> getHistoricoDeVelocidade() {
+        return new ArrayList<>(historicoDeMensagens); // Retorna uma cópia para evitar alterações externas
+    }
+
+    // Getters
 
     public String getTipo() {
         return tipo;

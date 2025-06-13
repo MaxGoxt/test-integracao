@@ -65,8 +65,6 @@ public class Carro {
             Pneus pneuTraseiroEsquerdo,
             Pneus pneuTraseiroDireito) {
 
-            
-
         if (modelo == null || modelo.isEmpty()) {
             throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
         }
@@ -130,160 +128,161 @@ public class Carro {
 
     // public void ligar() {
 
-    //     if (sistemaEletrico == null) {
-    //         throw new NullPointerException("Sistema elétrico não está disponível.");
-    //     }
-    //     if (!sistemaEletrico.isEstadoOk()) {
-    //         throw new IllegalStateException("Bateria está descarregada.");
-    //     }
+    // if (sistemaEletrico == null) {
+    // throw new NullPointerException("Sistema elétrico não está disponível.");
+    // }
+    // if (!sistemaEletrico.isEstadoOk()) {
+    // throw new IllegalStateException("Bateria está descarregada.");
+    // }
 
-    //     if (sistemaDeCombustivel == null) {
-    //         throw new NullPointerException("Sistema de combustível não está disponível.");
-    //     }
+    // if (sistemaDeCombustivel == null) {
+    // throw new NullPointerException("Sistema de combustível não está
+    // disponível.");
+    // }
 
-    //     if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
-    //         throw new IllegalStateException("Tanque de combustível está vazio.");
-    //     }
+    // if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
+    // throw new IllegalStateException("Tanque de combustível está vazio.");
+    // }
 
-    //     if (motor == null) {
-    //         throw new NullPointerException("Motor não está disponível.");
-    //     }
+    // if (motor == null) {
+    // throw new NullPointerException("Motor não está disponível.");
+    // }
 
-    //     if (transmissao == null) {
-    //         throw new NullPointerException("Transmissão não está disponível.");
-    //     }
+    // if (transmissao == null) {
+    // throw new NullPointerException("Transmissão não está disponível.");
+    // }
 
-    //     if (!ligado) {
-    //         ligado = true;
-    //         System.out.println("Carro ligado.");
-    //     } else {
-    //         System.out.println("Carro já está ligado.");
-    //     }
+    // if (!ligado) {
+    // ligado = true;
+    // System.out.println("Carro ligado.");
+    // } else {
+    // System.out.println("Carro já está ligado.");
+    // }
     // }
 
     // public String desligar() {
-    //     if (ligado) {
-    //         ligado = false;
-    //         velocidade = 0;
-    //         return "Carro desligado.";
-    //     } else {
-    //         return "Carro já está desligado.";
-    //     }
+    // if (ligado) {
+    // ligado = false;
+    // velocidade = 0;
+    // return "Carro desligado.";
+    // } else {
+    // return "Carro já está desligado.";
+    // }
     // }
 
     // public void atualizarQuilometragem(double km) {
-    //     if (km > 0) {
-    //         this.quilometragem += km;
-    //         System.out.println("Quilometragem atualizada para: " + this.quilometragem);
-    //     } else {
-    //         System.out.println("Valor de quilometragem inválido.");
-    //     }
+    // if (km > 0) {
+    // this.quilometragem += km;
+    // System.out.println("Quilometragem atualizada para: " + this.quilometragem);
+    // } else {
+    // System.out.println("Valor de quilometragem inválido.");
+    // }
     // }
 
     // public String acelerar() {
 
-    //     if (!ligado) {
-    //         return "Carro desligado. Ligue o carro antes de acelerar.";
-    //     }
+    // if (!ligado) {
+    // return "Carro desligado. Ligue o carro antes de acelerar.";
+    // }
 
-    //     if (velocidade >= velocidadeMaxima) {
-    //         return "Velocidade máxima atingida. Não é possível acelerar mais.";
-    //     }
+    // if (velocidade >= velocidadeMaxima) {
+    // return "Velocidade máxima atingida. Não é possível acelerar mais.";
+    // }
 
-    //     if (transmissao == null) {
-    //         return "Transmissão não está disponível. Não é possível acelerar.";
-    //     }
+    // if (transmissao == null) {
+    // return "Transmissão não está disponível. Não é possível acelerar.";
+    // }
 
-    //     if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
-    //         velocidade += 10; 
-    //         return "Carro acelerando...";
-    //     }
+    // if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
+    // velocidade += 10;
+    // return "Carro acelerando...";
+    // }
 
-    //     if (transmissao.getTipo() == Tipos.MarchaManual && transmissao.getMarcha() == MarchaManual.N) {
-    //         return "Carro em ponto morto. Mude a marcha para acelerar.";
-    //     }
+    // if (transmissao.getTipo() == Tipos.MarchaManual && transmissao.getMarcha() ==
+    // MarchaManual.N) {
+    // return "Carro em ponto morto. Mude a marcha para acelerar.";
+    // }
 
-    //     velocidade += 10; 
-    //     return "Carro acelerando...";
+    // velocidade += 10;
+    // return "Carro acelerando...";
     // }
 
     // public String frear() {
 
-    //     if (!ligado) {
-    //         return "Carro desligado.";
-    //     }
+    // if (!ligado) {
+    // return "Carro desligado.";
+    // }
 
-    //     if (velocidade <= 0) {
-    //         return "Carro já está parado.";
-    //     }
+    // if (velocidade <= 0) {
+    // return "Carro já está parado.";
+    // }
 
-    //     if (freios == null) {
-    //         return "Sistema de freios não está disponível. Não é possível frear.";
-    //     }
+    // if (freios == null) {
+    // return "Sistema de freios não está disponível. Não é possível frear.";
+    // }
 
-    //     velocidade -= 10; 
-    //     if (velocidade < 0) {
-    //         velocidade = 0; 
-    //     }
-    //     return "Carro freando...";
+    // velocidade -= 10;
+    // if (velocidade < 0) {
+    // velocidade = 0;
+    // }
+    // return "Carro freando...";
     // }
 
     // public String buzinar() {
-    //     if (!ligado) {
-    //         return "Carro desligado. Ligue o carro para buzinar.";
-    //     }
-    //     return "Buzina acionada!";
+    // if (!ligado) {
+    // return "Carro desligado. Ligue o carro para buzinar.";
+    // }
+    // return "Buzina acionada!";
     // }
 
     // public String getvelocidade() {
-    //     return "Velocidade atual: " + velocidade + " km/h";
+    // return "Velocidade atual: " + velocidade + " km/h";
     // }
 
-
     ////////////////////////////////////////////////////////////////////
- 
+
     public void ligar() {
         this.ligado = true;
-    
-        if (motor != null && !motor.isEstado()) {
+
+        if (motor != null && !motor.isLigado()) {
             motor.ligar();
         }
-    
+
         if (painel != null && !painel.isEstado()) {
             painel.ligarDisplay();
             painel.atualizarInformacoes("Painel ativo");
         }
-    
+
         if (sistemaEletrico != null) {
             sistemaEletrico.testarSistema();
         }
-    
+
         System.out.println("Carro ligado.");
     }
 
-    
-    
-    public void consumir() {
-        if (!ligado || motor == null || !motor.isEstado()) {
+    public void acelerar() {
+        if (!this.ligado || this.motor == null || !this.motor.isLigado()) {
             System.out.println("Carro desligado ou motor inativo.");
-            return;
+            throw new IllegalStateException("Carro desligado ou motor inativo.");
         }
-    
-        if (sistemaDeCombustivel != null && sistemaDeCombustivel.getNivelDeCombustivel() > 0) {
-            sistemaDeCombustivel.consumir(1); // simula consumo de 1 litro
-            // consumindo 1 litro
-            if (painel != null) {
-                painel.atualizarInformacoes("Acelerando...");
+
+        if (this.sistemaDeCombustivel.getNivelDeCombustivel() > 0) {
+
+            if (this.velocidade < this.velocidadeMaxima) {
+                this.painel.atualizarInformacoes("Velocidade máxima alcançada.");
             }
+
+            this.sistemaDeCombustivel.consumir(1); // simula consumo de 1 litro
+            this.velocidade += 10;
+
+            // consumindo 1 litro
+            this.painel.atualizarInformacoes("Acelerando...");
             System.out.println("Acelerando...");
         } else {
-            if (painel != null) {
-                painel.atualizarInformacoes("Sem combustível.");
-            }
+            this.painel.atualizarInformacoes("Sem combustível.");
             System.out.println("Não há combustível.");
         }
     }
- 
 
     public String getModelo() {
         return modelo;
@@ -320,7 +319,11 @@ public class Carro {
     public Painel getPainel() {
         return painel;
     }
-    
+
+    public Integer getVelocidade() {
+    return this.velocidade;
+}
+
 
     @Override
     public String toString() {
