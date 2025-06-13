@@ -235,6 +235,10 @@ public class Carro {
         return "Buzina acionada!";
     }
 
+    public String getvelocidade() {
+        return "Velocidade atual: " + velocidade + " km/h";
+    }
+
  
 
     public String getModelo() {

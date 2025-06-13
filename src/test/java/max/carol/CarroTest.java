@@ -22,6 +22,8 @@ public class CarroTest {
     private Portas portas;
     private Suspensao suspensao;
     private Painel painel;
+    private Transmissao transmissao;
+    
 
     @BeforeEach
     public void setUp() {
@@ -37,7 +39,7 @@ public class CarroTest {
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
         motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
         suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
-        
+        transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
         // Criação do carro com mocks básicos
         carro = new Carro(
                 "Fiat Uno",
@@ -117,6 +119,18 @@ public class CarroTest {
         assertDoesNotThrow(() -> carro.ligar(), "O método ligar não deve lançar exceção.");
         assertTimeout(Duration.ofMillis(100), () -> carro.ligar());
     }
+
+
+    // 10. Verifica se o carro acelera corretamente
+    // @Test
+    // public void testAcelerarCarro() {
+    //     carro.ligar();
+    //     String resultado = carro.acelerar();
+    //     assertEquals("Carro acelerando.", resultado, "A mensagem de aceleração não é a esperada.");
+    //     assertTrue(carro.getVelocidade() > 0, "A velocidade do carro deve ser maior que zero após acelerar.");
+    // }
+    
+
 
     //luzes
     @Test
