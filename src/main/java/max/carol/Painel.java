@@ -68,7 +68,7 @@ public class Painel {
     // Getters
 
     public List<String> getMensagens() {
-        return new ArrayList<>(mensagens); // Protege contra alterações externas
+        return new ArrayList<>(mensagens); 
     }
 
     public List<String> getHistoricoDeMensagens() {

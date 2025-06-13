@@ -250,6 +250,18 @@ public class Carro {
             throw new NullPointerException("Sistema elétrico não pode ser nulo.");
         }
 
+        if (this.sistemaEletrico.getNivelCarga() < 30) {
+            if (painel != null) {
+                painel.ligarDisplay(); // liga o display para mostrar a mensagem
+                painel.atualizarInformacoes("Erro: Bateria insuficiente");
+            }
+            if (luzes != null) {
+                luzes.desligar(); // adiciona esse método em Luzes se ainda não existir
+            }
+            this.ligado = false;
+            return;
+        }
+
         if (this.portas.temPortaAberta()) {
             this.painel.atualizarInformacoes("Alerta: Porta aberta");
             throw new IllegalStateException("Não é possível ligar o carro com portas abertas.");
@@ -323,6 +335,10 @@ public class Carro {
 
     public boolean isLigado() {
         return ligado;
+    }
+
+    public SistemaEletrico getSistemaEletrico() {
+        return this.sistemaEletrico;
     }
 
     public Bancos getBancos() {

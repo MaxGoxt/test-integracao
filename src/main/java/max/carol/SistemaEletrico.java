@@ -7,6 +7,7 @@ public class SistemaEletrico {
     private String tipoDeBateria;
     private boolean estado;
     private String marca;
+    private int nivelCarga;
 
     // ✅ Construtor completo (já existente)
     public SistemaEletrico(
@@ -20,15 +21,29 @@ public class SistemaEletrico {
         this.tipoDeBateria = tipoDeBateria;
         this.estado = estado;
         this.marca = marca;
+        this.nivelCarga = 100; // Inicializa o nível de carga como 100%
     }
 
+
+    public void setNivelCarga(int nivel) {
+        this.nivelCarga = nivel;
+        this.estado = nivel >= 30; // considera fraca se < 30%
+    }
+
+    public int getNivelCarga() {
+        return this.nivelCarga;
+    }
 
     public SistemaEletrico(boolean estado) {
         this(12.0, 60.0, "Chumbo-ácido", estado, "Moura");
     }
 
     public String verificarBateria() {
-        return estado ? "Bateria em bom estado." : "Bateria descarregada.";
+        if (estado) {
+            return "Bateria está em bom estado.";
+        } else {
+            return "Bateria precisa ser substituída.";
+        }
     }
 
     public void substituirBateria(String tipoDeBateria, double capacidade, double voltagem) {

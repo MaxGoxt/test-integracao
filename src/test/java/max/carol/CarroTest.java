@@ -16,181 +16,193 @@ import max.carol.Transmissao.Marcha;
 
 public class CarroTest {
 
-    private SistemaDeDirecao direcao;
-    private SistemaEletrico eletrico;
-    private Pneus pneu;
-    private Bancos banco;
-    private SistemaDeCombustivel combustivel;
-    private Carro carro;
-    private Motor motor;
-    private Luzes luzes;
-    private Freios freio;
-    private Portas portas;
-    private Suspensao suspensao;
-    private Painel painel;
-    private Transmissao transmissao;
+        private SistemaDeDirecao direcao;
+        private SistemaEletrico eletrico;
+        private Pneus pneu;
+        private Bancos banco;
+        private SistemaDeCombustivel combustivel;
+        private Carro carro;
+        private Motor motor;
+        private Luzes luzes;
+        private Freios freio;
+        private Portas portas;
+        private Suspensao suspensao;
+        private Painel painel;
+        private Transmissao transmissao;
 
-    @BeforeEach
-    public void setUp() {
-        // Inicializa os componentes necessários para o teste do carro
-        direcao = new SistemaDeDirecao();
-        eletrico = new SistemaEletrico(true);
-        pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
-        banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
-        combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
-        freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
-        luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
-        portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada", "fechada");
-        painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
-        motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
-        suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
-        transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
-        // Criação do carro com mocks básicos
-        carro = new Carro(
-                "Fiat Uno",
-                2020,
-                "Preto",
-                "ABC-1234",
-                50000,
-                new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
-                new Motor("algo", 50, 50, "Rossi", true),
-                new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica"),
-                new Painel("Digital", "Inicializando", true, "Genérico", false),
-                eletrico,
-                direcao,
-                combustivel,
-                new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true"),
-                new Freios("ABS", "butadieno, do estireno e da acrilonitrila", 20, "Bosch ", 20, true),
-                banco,
-                new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO),
-                new Pneus(Pneus.posicaoPneu.DIANTEIRO_DIREITO),
-                new Pneus(Pneus.posicaoPneu.TRASEIRO_ESQUERDO),
-                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO),
-                portas);
-    }
+        @BeforeEach
+        public void setUp() {
+                // Inicializa os componentes necessários para o teste do carro
+                direcao = new SistemaDeDirecao();
+                eletrico = new SistemaEletrico(true);
+                pneu = new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO);
+                banco = new Bancos(5, "bom", "Couro", "preto", "Couro Sintético");
+                combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
+                freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
+                luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
+                portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada", "fechada");
+                painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
+                motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
+                suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
+                transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
+                // Criação do carro com mocks básicos
+                carro = new Carro(
+                                "Fiat Uno",
+                                2020,
+                                "Preto",
+                                "ABC-1234",
+                                50000,
+                                new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF"),
+                                new Motor("algo", 50, 50, "Rossi", true),
+                                new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica"),
+                                new Painel("Digital", "Inicializando", true, "Genérico", false),
+                                eletrico,
+                                direcao,
+                                combustivel,
+                                new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true"),
+                                new Freios("ABS", "butadieno, do estireno e da acrilonitrila", 20, "Bosch ", 20, true),
+                                banco,
+                                new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO),
+                                new Pneus(Pneus.posicaoPneu.DIANTEIRO_DIREITO),
+                                new Pneus(Pneus.posicaoPneu.TRASEIRO_ESQUERDO),
+                                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO),
+                                portas);
+        }
 
+        // Deve Ativar Motor Painel E Sistema Eletrico
+        @Test
+        void ligarCarro() {
+                // Arrange
+                SistemaEletrico sistemaEletrico = new SistemaEletrico(true); // Bateria ok
+                Motor motor = new Motor("V8", 300, 4.0, "Chevrolet", false);
+                Painel painel = new Painel("Digital", "Inicializando...", true, "Bosch", false);
 
+                // Act
+                carro.ligar();
+                motor.ligar(); // simulando o motor sendo ativado pelo carro
+                painel.ligarDisplay();
+                painel.atualizarInformacoes("Motor ligado");
 
-    // Deve Ativar Motor Painel E Sistema Eletrico
-    @Test
-    void ligarCarro() {
-        // Arrange
-        SistemaEletrico sistemaEletrico = new SistemaEletrico(true); // Bateria ok
-        Motor motor = new Motor("V8", 300, 4.0, "Chevrolet", false);
-        Painel painel = new Painel("Digital", "Inicializando...", true, "Bosch", false);
+                // Assert
+                assertAll("Verificação integrada dos sistemas ao ligar",
+                                () -> assertTrue(motor.isLigado(), "Motor deveria estar ligado"),
+                                () -> assertTrue(sistemaEletrico.isEstadoOk(), "Sistema elétrico deveria estar ativo"),
+                                () -> assertEquals("Motor ligado", painel.getDisplay(),
+                                                "Painel deveria mostrar mensagem 'Motor ligado'"),
+                                () -> assertTrue(carro.isLigado(), "Carro deveria estar ligado"));
+        }
 
-        // Act
-        carro.ligar();
-        motor.ligar(); // simulando o motor sendo ativado pelo carro
-        painel.ligarDisplay();
-        painel.atualizarInformacoes("Motor ligado");
+        // _Deve Consumir Combustivel E Verificar Motor Transmissao
+        @Test
+        void acelerar() {
 
-        // Assert
-        assertAll("Verificação integrada dos sistemas ao ligar",
-                () -> assertTrue(motor.isLigado(), "Motor deveria estar ligado"),
-                () -> assertTrue(sistemaEletrico.isEstadoOk(), "Sistema elétrico deveria estar ativo"),
-                () -> assertEquals("Motor ligado", painel.getDisplay(),
-                        "Painel deveria mostrar mensagem 'Motor ligado'"),
-                () -> assertTrue(carro.isLigado(), "Carro deveria estar ligado"));
-    }
+                // Act: ligar o carro e preparar o sistema para aceleração
+                carro.ligar(); // Deve ligar o motor e os demais sistemas automaticamente
+                transmissao.trocarMarcha(1); // Troca para marcha 1
 
-    // _Deve Consumir Combustivel E Verificar Motor Transmissao
-    @Test
-    void acelerar() {
+                // Estado inicial
+                double nivelInicial = combustivel.getNivelDeCombustivel();
+                // boolean motorLigado = motor.isEstado();
+                Object marchaAtual = transmissao.getMarcha();
+                // List<String> mensagensAntes = carro.getPainel().getMensagens();
 
-        // Act: ligar o carro e preparar o sistema para aceleração
-        carro.ligar(); // Deve ligar o motor e os demais sistemas automaticamente
-        transmissao.trocarMarcha(1); // Troca para marcha 1
-
-        // Estado inicial
-        double nivelInicial = combustivel.getNivelDeCombustivel();
-        // boolean motorLigado = motor.isEstado();
-        Object marchaAtual = transmissao.getMarcha();
-        // List<String> mensagensAntes = carro.getPainel().getMensagens();
-
-        // Acelerar
-        carro.acelerar();
-
-        // Assert: verificação integrada dos 3 sistemas
-        assertAll("Verificando integração após aceleração",
-                () -> assertTrue(motor.isLigado(), "Motor deve continuar ligado após aceleração"),
-                () -> assertTrue(combustivel.getNivelDeCombustivel() < nivelInicial,
-                        "Combustível deve ter sido consumido"),
-                () -> assertEquals(Transmissao.MarchaManual.M1, marchaAtual, "Marcha deve permanecer em M1"),
-                () -> assertTrue(carro.getPainel().getMensagens().contains("Acelerando..."),
-                        "Painel deve exibir 'Acelerando...'"));
-    }
-
-    @Test
-    void verificarVelocidadeMaximaPorMarcha() {
-        // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
-        // Map do enum Marcha para número da marcha
-        Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
-                Marcha.PRIMEIRA, 1,
-                Marcha.SEGUNDA, 2,
-                Marcha.TERCEIRA, 3,
-                Marcha.QUARTA, 4,
-                Marcha.QUINTA, 5);
-
-        // Limites máximos de velocidade para cada marcha (exemplo hipotético)
-        Map<Marcha, Integer> velocidadeEsperada = Map.of(
-                Marcha.PRIMEIRA, 20,
-                Marcha.SEGUNDA, 40,
-                Marcha.TERCEIRA, 60,
-                Marcha.QUARTA, 90,
-                Marcha.QUINTA, 120);
-
-        // Ligar o carro para preparar o sistemaF
-        carro.ligar();
-
-        List<String> mensagensEsperadas = new ArrayList<>();
-
-        for (Marcha marchaEnum : Marcha.values()) {
-            int numeroMarcha = mapaMarchaParaInt.get(marchaEnum);
-
-            // Troca a marcha no sistema
-            transmissao.trocarMarcha(numeroMarcha);
-
-            // Acelera até atingir a velocidade máxima da marcha
-            while (carro.getVelocidade() < velocidadeEsperada.get(marchaEnum)) {
+                // Acelerar
                 carro.acelerar();
-                // Adiciona mensagem no painel
-                painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu " + carro.getVelocidade() + "km/h");
-            }
 
-            // Verifica se a velocidade atingiu a esperada para a marcha atual
-            assertEquals(velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
-                    "Velocidade máxima na " + marchaEnum.name().toLowerCase() + " marcha deveria ser " +
-                            velocidadeEsperada.get(marchaEnum));
+                // Assert: verificação integrada dos 3 sistemas
+                assertAll("Verificando integração após aceleração",
+                                () -> assertTrue(motor.isLigado(), "Motor deve continuar ligado após aceleração"),
+                                () -> assertTrue(combustivel.getNivelDeCombustivel() < nivelInicial,
+                                                "Combustível deve ter sido consumido"),
+                                () -> assertEquals(Transmissao.MarchaManual.M1, marchaAtual,
+                                                "Marcha deve permanecer em M1"),
+                                () -> assertTrue(carro.getPainel().getMensagens().contains("Acelerando..."),
+                                                "Painel deve exibir 'Acelerando...'"));
         }
 
-        // Verifica se as mensagens no painel correspondem ao que foi esperado
-        List<String> mensagensPainel = painel.getHistoricoDeVelocidade();
-        for (String mensagemEsperada : mensagensEsperadas) {
-            assertTrue(mensagensPainel.contains(mensagemEsperada),
-                    "Painel deve conter a mensagem: " + mensagemEsperada);
+        @Test
+        void verificarVelocidadeMaximaPorMarcha() {
+                // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
+                // Map do enum Marcha para número da marcha
+                Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
+                                Marcha.PRIMEIRA, 1,
+                                Marcha.SEGUNDA, 2,
+                                Marcha.TERCEIRA, 3,
+                                Marcha.QUARTA, 4,
+                                Marcha.QUINTA, 5);
+
+                // Limites máximos de velocidade para cada marcha (exemplo hipotético)
+                Map<Marcha, Integer> velocidadeEsperada = Map.of(
+                                Marcha.PRIMEIRA, 20,
+                                Marcha.SEGUNDA, 40,
+                                Marcha.TERCEIRA, 60,
+                                Marcha.QUARTA, 90,
+                                Marcha.QUINTA, 120);
+
+                // Ligar o carro para preparar o sistemaF
+                carro.ligar();
+
+                List<String> mensagensEsperadas = new ArrayList<>();
+
+                for (Marcha marchaEnum : Marcha.values()) {
+                        int numeroMarcha = mapaMarchaParaInt.get(marchaEnum);
+
+                        // Troca a marcha no sistema
+                        transmissao.trocarMarcha(numeroMarcha);
+
+                        // Acelera até atingir a velocidade máxima da marcha
+                        while (carro.getVelocidade() < velocidadeEsperada.get(marchaEnum)) {
+                                carro.acelerar();
+                                // Adiciona mensagem no painel
+                                painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu "
+                                                + carro.getVelocidade() + "km/h");
+                        }
+
+                        // Verifica se a velocidade atingiu a esperada para a marcha atual
+                        assertEquals(velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
+                                        "Velocidade máxima na " + marchaEnum.name().toLowerCase()
+                                                        + " marcha deveria ser " +
+                                                        velocidadeEsperada.get(marchaEnum));
+                }
+
+                // Verifica se as mensagens no painel correspondem ao que foi esperado
+                List<String> mensagensPainel = painel.getHistoricoDeVelocidade();
+                for (String mensagemEsperada : mensagensEsperadas) {
+                        assertTrue(mensagensPainel.contains(mensagemEsperada),
+                                        "Painel deve conter a mensagem: " + mensagemEsperada);
+                }
         }
-    }
 
-    @Test
-    void portaAbertaDeveImpedirAceleracaoEAposFecharPermitir() {
-        carro.portas.abrirPorta(0); // Porta aberta
+        @Test
+        void portaAbertaDeveImpedirAceleracaoEAposFecharPermitir() {
+                carro.portas.abrirPorta(0); // Porta aberta
 
-        assertThrows(IllegalStateException.class, carro::acelerar,
-                "Deve lançar exceção ao tentar acelerar com porta aberta");
+                assertThrows(IllegalStateException.class, carro::acelerar,
+                                "Deve lançar exceção ao tentar acelerar com porta aberta");
 
-        carro.transmissao.trocarMarcha(Transmissao.Marcha.PRIMEIRA);
+                carro.transmissao.trocarMarcha(Transmissao.Marcha.PRIMEIRA);
 
-        carro.portas.fecharPorta(0); // Fecha a porta
-        // Porta foi fechada automaticamente
-        assertFalse(portas.temPortaAberta());
+                carro.portas.fecharPorta(0); // Fecha a porta
+                // Porta foi fechada automaticamente
+                assertFalse(portas.temPortaAberta());
 
-        // Segunda tentativa: deve funcionar
-        carro.ligar(); 
-        carro.acelerar();
-        assertEquals(10, carro.getVelocidade());
-    }
+                // Segunda tentativa: deve funcionar
+                carro.ligar();
+                carro.acelerar();
+                assertEquals(10, carro.getVelocidade());
+        }
 
+        @Test
+        void bateriaQuaseFracaAindaImpedeLigacaoDasLuzes() {
+                carro.getSistemaEletrico().setNivelCarga(25);
+                carro.ligar();
 
+                // Assert
+                assertFalse(luzes.areFaroisAcesos(), "Faróis não devem acender com 25% de carga");
+                assertLinesMatch(
+                                List.of("Erro: Bateria insuficiente"),
+                                carro.getPainel().getMensagens());
+
+        }
 
 }

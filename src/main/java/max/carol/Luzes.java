@@ -8,6 +8,8 @@ public class Luzes {
     private boolean estado;
     private String modelo;
     private String luzDeFreioLigada;
+    private boolean faroisAcesos;
+
 
     public Luzes(
             String tipo,
@@ -42,6 +44,10 @@ public class Luzes {
     public String LuzDeFreio() {
         return luzDeFreioLigada;
     }
+
+    public boolean areFaroisAcesos() {
+    return this.faroisAcesos;
+}
 
     // Getters
 
