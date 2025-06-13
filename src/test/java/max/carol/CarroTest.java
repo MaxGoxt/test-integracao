@@ -298,7 +298,4 @@ void verificarVelocidadeMaximaPorMarcha() {
     }
 }
 
-    
-
-
 }
