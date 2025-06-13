@@ -39,6 +39,7 @@ public class Carro {
     public SistemaEletrico sistemaEletrico;
     public Suspensao suspensao;
     public Transmissao transmissao;
+    public Portas portas; // Adicionando o atributo portas
 
     public static void main(String[] args) {
         System.out.println("Carro.java");
@@ -63,7 +64,8 @@ public class Carro {
             Pneus pneuDianteEsquerdo,
             Pneus pneuDianteiroDireito,
             Pneus pneuTraseiroEsquerdo,
-            Pneus pneuTraseiroDireito) {
+            Pneus pneuTraseiroDireito,
+            Portas portas) {
 
         if (modelo == null || modelo.isEmpty()) {
             throw new NullPointerException("Modelo não pode ser nulo ou vazio.");
@@ -124,6 +126,7 @@ public class Carro {
         this.suspensao = suspensao;
         this.painel = painel;
         this.velocidadeMaxima = 200;
+        this.portas = portas;
     }
 
     // public void ligar() {
@@ -242,44 +245,58 @@ public class Carro {
     ////////////////////////////////////////////////////////////////////
 
     public void ligar() {
+
+        if (this.sistemaEletrico == null) {
+            throw new NullPointerException("Sistema elétrico não pode ser nulo.");
+        }
+
+        if (this.portas.temPortaAberta()) {
+            this.painel.atualizarInformacoes("Alerta: Porta aberta");
+            throw new IllegalStateException("Não é possível ligar o carro com portas abertas.");
+        }
+
+        if (this.motor != null) {
+            this.motor.ligar();
+        } else {
+            throw new NullPointerException("Motor não pode ser nulo.");
+        }
+
+        if (this.painel != null) {
+            this.painel.ligarDisplay();
+            this.painel.atualizarInformacoes("Painel ativo");
+        } else {
+            this.motor.desligar();
+            throw new NullPointerException("Painel não pode ser nulo.");
+        }
+
         this.ligado = true;
-
-        if (motor != null && !motor.isLigado()) {
-            motor.ligar();
-        }
-
-        if (painel != null && !painel.isEstado()) {
-            painel.ligarDisplay();
-            painel.atualizarInformacoes("Painel ativo");
-        }
-
-        if (sistemaEletrico != null) {
-            sistemaEletrico.testarSistema();
-        }
-
         System.out.println("Carro ligado.");
     }
 
     public void acelerar() {
         if (!this.ligado || this.motor == null || !this.motor.isLigado()) {
-            System.out.println("Carro desligado ou motor inativo.");
+            painel.atualizarInformacoes("Carro desligado ou motor inativo.");
             throw new IllegalStateException("Carro desligado ou motor inativo.");
         }
 
-        if (this.sistemaDeCombustivel.getNivelDeCombustivel() > 0) {
+        if (this.portas != null && this.portas.temPortaAberta()) {
+            painel.atualizarInformacoes("Alerta: Porta aberta");
+            painel.atualizarInformacoes("Movimento bloqueado");
+            throw new IllegalStateException("Porta aberta. Não é possível acelerar.");
+        }
 
-            if (this.velocidade < this.velocidadeMaxima) {
-                this.painel.atualizarInformacoes("Velocidade máxima alcançada.");
+        if (this.sistemaDeCombustivel.getNivelDeCombustivel() > 0) {
+            if (this.velocidade >= this.velocidadeMaxima) {
+                painel.atualizarInformacoes("Velocidade máxima alcançada.");
+                return;
             }
 
-            this.sistemaDeCombustivel.consumir(1); // simula consumo de 1 litro
+            this.sistemaDeCombustivel.consumir(1);
             this.velocidade += 10;
-
-            // consumindo 1 litro
-            this.painel.atualizarInformacoes("Acelerando...");
+            painel.atualizarInformacoes("Acelerando...");
             System.out.println("Acelerando...");
         } else {
-            this.painel.atualizarInformacoes("Sem combustível.");
+            painel.atualizarInformacoes("Sem combustível.");
             System.out.println("Não há combustível.");
         }
     }
@@ -321,9 +338,8 @@ public class Carro {
     }
 
     public Integer getVelocidade() {
-    return this.velocidade;
-}
-
+        return this.velocidade;
+    }
 
     @Override
     public String toString() {

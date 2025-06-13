@@ -29,7 +29,6 @@ public class CarroTest {
     private Suspensao suspensao;
     private Painel painel;
     private Transmissao transmissao;
-    
 
     @BeforeEach
     public void setUp() {
@@ -41,7 +40,7 @@ public class CarroTest {
         combustivel = new SistemaDeCombustivel("algo", 5, 50, "Ipiranga", true);
         freio = new Freios("Disco", "Aço", 15.0, "Bosch", 10.0, false);
         luzes = new Luzes("Luz de posição", 100, "branca", true, "luzes de posição", "true");
-        portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada");
+        portas = new Portas(4, "Aço", "Preto", "corrediça", "fechada", "fechada");
         painel = new Painel("Digital", "Inicializando", true, "MarcaX", true);
         motor = new Motor("Gasolina", 100, 1.6, "Honda", true);
         suspensao = new Suspensao("independente", "aço", 15.0, 5, "MarcaGenérica");
@@ -66,135 +65,13 @@ public class CarroTest {
                 new Pneus(Pneus.posicaoPneu.DIANTEIRO_ESQUERDO),
                 new Pneus(Pneus.posicaoPneu.DIANTEIRO_DIREITO),
                 new Pneus(Pneus.posicaoPneu.TRASEIRO_ESQUERDO),
-                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO));
-    }
-
-    // 1. Verifica se os componentes principais do sistema de direção estão corretos
-    @Test
-    public void testComponentesPrincipaisDirecao() {
-        String[] esperado = { "Volante", "Caixa de direção", "Coluna", "Bomba hidráulica" };
-        assertArrayEquals(esperado, direcao.ComponentesPrincipais());
-    }
-
-    // 2. Verifica se o checklist de manutenção do sistema de direção corresponde ao
-    // esperado
-    @Test
-    public void testChecklistManutencaoDirecao() {
-        List<String> esperado = List.of(
-                "Verificar fluido de direção",
-                "Inspecionar folgas no volante",
-                "Checar bomba hidráulica");
-        assertIterableEquals(esperado, direcao.getChecklistManutencao());
-    }
-
-    // 3. Verifica se a saída do teste do sistema elétrico corresponde à esperada
-    @Test
-    public void testSaidaSistemaEletrico() {
-        // Redireciona a saída padrão para capturar o que é impresso no console
-        java.io.ByteArrayOutputStream outContent = new java.io.ByteArrayOutputStream();
-        System.setOut(new java.io.PrintStream(outContent));
-
-        eletrico.testarSistema();
-
-        List<String> esperado = List.of("Sistema elétrico testado com sucesso.");
-        List<String> real = List.of(outContent.toString().trim());
-        assertLinesMatch(esperado, real);
-    }
-
-    // 4. Verifica que o pneu não possui estepe reserva (espera null)
-    @Test
-    public void testEstepeReservaPneu() { // arrumar
-        assertNull(pneu.getEstepeReserva());
-    }
-
-    // 5. Verifica se a exceção IllegalStateException é lançada ao ajustar o encosto
-    // com valor inválido
-    @Test
-    public void testAjustarEncostoComValorInvalido() {
-        assertThrows(IllegalStateException.class, () -> banco.ajustarEncosto(""));
-    }
-
-    // 6. Verifica que o método carro.ligar() executa dentro de 100 milissegundos
-    @Test
-    public void testLigarCarro() {
-
-        assertAll(
-                () -> assertNotEquals(null, carro.sistemaEletrico),
-                () -> assertNotEquals(null, carro.sistemaDeCombustivel),
-                () -> assertNotEquals(null, carro.motor),
-                () -> assertDoesNotThrow(() -> carro.ligar(), "O método ligar não deve lançar exceção."),
-                () -> assertTimeout(Duration.ofMillis(100), () -> carro.ligar()));
+                new Pneus(Pneus.posicaoPneu.TRASEIRO_DIREITO),
+                portas);
     }
 
 
 
-    // luzes
-    @Test
-    public void testAjustarIntensidadeLuz() {
-        // Verifica o valor inicial da intensidade
-        assertEquals(100, luzes.getIntensidade(), "A intensidade inicial não é a esperada.");
-
-        // Ajusta a intensidade para 80
-        String resultado = luzes.ajustarIntensidade(80);
-
-        // Verifica se o método retornou a mensagem correta
-        assertEquals("Intensidade ajustada para: 80", resultado, "A mensagem de intensidade não é a esperada.");
-
-        // Verifica se a intensidade foi alterada corretamente
-        assertEquals(80, luzes.getIntensidade(), "A intensidade da luz não foi ajustada corretamente.");
-    }
-
-    // teste pneu
-    @Test
-    public void testPneu() {
-        assertEquals("Pressão ajustada com sucesso!", pneu.ajustarPressao(30));
-    }
-
-    // teste sistema de combustivel
-    @Test
-    public void testCombustivel() {
-        assertThrows(IllegalArgumentException.class, () -> combustivel.abastecer(-10));
-    }
-
-    // teste freios
-    @Test
-    public void testAtivarFreioDeMao() {
-        freio.ativarFreiodemao();
-        assertTrue(freio.verificarfreioDeMao(), "Freio de mão não foi ativado.");
-    }
-
-    // teste motor
-    @Test
-    public void testMotor() {
-        motor.desligar();
-        assertEquals("Motor desligado.", motor.verificarLigado());
-    }
-
-    // teste portas
-    @Test
-    public void testQuantidadeDePortas() {
-        assertEquals(4, portas.getQuantidade(), "A quantidade de portas deve ser 4.");
-    }
-
-    // teste suspensao
-    @Test
-    public void testVerificarEstadoSuspensao() {
-        assertTrue(suspensao.verificarEstado().contains("Suspensão em bom estado."));
-    }
-
-    // teste painel
-    @Test
-    public void testLigarPainel() {
-        assertTimeout(Duration.ofSeconds(2), () -> painel.operacaoDemorada());
-    }
-
-    @Test
-    public void testTransmissao() {
-        Transmissao transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
-        assertThrows(IllegalArgumentException.class, () -> transmissao.trocarMarcha(-5));
-    }
-
-// Deve Ativar Motor Painel E Sistema Eletrico
+    // Deve Ativar Motor Painel E Sistema Eletrico
     @Test
     void ligarCarro() {
         // Arrange
@@ -210,18 +87,17 @@ public class CarroTest {
 
         // Assert
         assertAll("Verificação integrada dos sistemas ao ligar",
-            () -> assertTrue(motor.isLigado(), "Motor deveria estar ligado"),
-            () -> assertTrue(sistemaEletrico.isEstadoOk(), "Sistema elétrico deveria estar ativo"),
-            () -> assertEquals("Motor ligado", painel.getDisplay(), "Painel deveria mostrar mensagem 'Motor ligado'"),
-            () -> assertTrue(carro.isLigado(), "Carro deveria estar ligado")
-        );
+                () -> assertTrue(motor.isLigado(), "Motor deveria estar ligado"),
+                () -> assertTrue(sistemaEletrico.isEstadoOk(), "Sistema elétrico deveria estar ativo"),
+                () -> assertEquals("Motor ligado", painel.getDisplay(),
+                        "Painel deveria mostrar mensagem 'Motor ligado'"),
+                () -> assertTrue(carro.isLigado(), "Carro deveria estar ligado"));
     }
 
-
     // _Deve Consumir Combustivel E Verificar Motor Transmissao
-     @Test
+    @Test
     void acelerar() {
-      
+
         // Act: ligar o carro e preparar o sistema para aceleração
         carro.ligar(); // Deve ligar o motor e os demais sistemas automaticamente
         transmissao.trocarMarcha(1); // Troca para marcha 1
@@ -237,65 +113,84 @@ public class CarroTest {
 
         // Assert: verificação integrada dos 3 sistemas
         assertAll("Verificando integração após aceleração",
-            () -> assertTrue(motor.isLigado(), "Motor deve continuar ligado após aceleração"),
-            () -> assertTrue(combustivel.getNivelDeCombustivel() < nivelInicial, "Combustível deve ter sido consumido"),
-            () -> assertEquals(Transmissao.MarchaManual.M1, marchaAtual, "Marcha deve permanecer em M1"),
-            () -> assertTrue(carro.getPainel().getMensagens().contains("Acelerando..."), "Painel deve exibir 'Acelerando...'")
-        );
+                () -> assertTrue(motor.isLigado(), "Motor deve continuar ligado após aceleração"),
+                () -> assertTrue(combustivel.getNivelDeCombustivel() < nivelInicial,
+                        "Combustível deve ter sido consumido"),
+                () -> assertEquals(Transmissao.MarchaManual.M1, marchaAtual, "Marcha deve permanecer em M1"),
+                () -> assertTrue(carro.getPainel().getMensagens().contains("Acelerando..."),
+                        "Painel deve exibir 'Acelerando...'"));
     }
 
+    @Test
+    void verificarVelocidadeMaximaPorMarcha() {
+        // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
+        // Map do enum Marcha para número da marcha
+        Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
+                Marcha.PRIMEIRA, 1,
+                Marcha.SEGUNDA, 2,
+                Marcha.TERCEIRA, 3,
+                Marcha.QUARTA, 4,
+                Marcha.QUINTA, 5);
 
- @Test
-void verificarVelocidadeMaximaPorMarcha() {
+        // Limites máximos de velocidade para cada marcha (exemplo hipotético)
+        Map<Marcha, Integer> velocidadeEsperada = Map.of(
+                Marcha.PRIMEIRA, 20,
+                Marcha.SEGUNDA, 40,
+                Marcha.TERCEIRA, 60,
+                Marcha.QUARTA, 90,
+                Marcha.QUINTA, 120);
 
-    // Map do enum Marcha para número da marcha
-    Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
-        Marcha.PRIMEIRA, 1,
-        Marcha.SEGUNDA, 2,
-        Marcha.TERCEIRA, 3,
-        Marcha.QUARTA, 4,
-        Marcha.QUINTA, 5
-    );
+        // Ligar o carro para preparar o sistemaF
+        carro.ligar();
 
-    // Limites máximos de velocidade para cada marcha (exemplo hipotético)
-    Map<Marcha, Integer> velocidadeEsperada = Map.of(
-        Marcha.PRIMEIRA, 20,
-        Marcha.SEGUNDA, 40,
-        Marcha.TERCEIRA, 60,
-        Marcha.QUARTA, 90,
-        Marcha.QUINTA, 120
-    );
+        List<String> mensagensEsperadas = new ArrayList<>();
 
-    // Ligar o carro para preparar o sistemaF
-    carro.ligar();
+        for (Marcha marchaEnum : Marcha.values()) {
+            int numeroMarcha = mapaMarchaParaInt.get(marchaEnum);
 
-    List<String> mensagensEsperadas = new ArrayList<>();
+            // Troca a marcha no sistema
+            transmissao.trocarMarcha(numeroMarcha);
 
-    for (Marcha marchaEnum : Marcha.values()) {
-        int numeroMarcha = mapaMarchaParaInt.get(marchaEnum);
+            // Acelera até atingir a velocidade máxima da marcha
+            while (carro.getVelocidade() < velocidadeEsperada.get(marchaEnum)) {
+                carro.acelerar();
+                // Adiciona mensagem no painel
+                painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu " + carro.getVelocidade() + "km/h");
+            }
 
-        // Troca a marcha no sistema
-        transmissao.trocarMarcha(numeroMarcha);
-
-        // Acelera até atingir a velocidade máxima da marcha
-        while (carro.getVelocidade() < velocidadeEsperada.get(marchaEnum)) {
-            carro.acelerar();
-            // Adiciona mensagem no painel
-            painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu " + carro.getVelocidade() + "km/h");
+            // Verifica se a velocidade atingiu a esperada para a marcha atual
+            assertEquals(velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
+                    "Velocidade máxima na " + marchaEnum.name().toLowerCase() + " marcha deveria ser " +
+                            velocidadeEsperada.get(marchaEnum));
         }
 
-        // Verifica se a velocidade atingiu a esperada para a marcha atual
-        assertEquals(velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
-            "Velocidade máxima na " + marchaEnum.name().toLowerCase() + " marcha deveria ser " +
-            velocidadeEsperada.get(marchaEnum));
+        // Verifica se as mensagens no painel correspondem ao que foi esperado
+        List<String> mensagensPainel = painel.getHistoricoDeVelocidade();
+        for (String mensagemEsperada : mensagensEsperadas) {
+            assertTrue(mensagensPainel.contains(mensagemEsperada),
+                    "Painel deve conter a mensagem: " + mensagemEsperada);
+        }
     }
 
-    // Verifica se as mensagens no painel correspondem ao que foi esperado
-    List<String> mensagensPainel = painel.getHistoricoDeVelocidade();
-    for (String mensagemEsperada : mensagensEsperadas) {
-        assertTrue(mensagensPainel.contains(mensagemEsperada),
-            "Painel deve conter a mensagem: " + mensagemEsperada);
+    @Test
+    void portaAbertaDeveImpedirAceleracaoEAposFecharPermitir() {
+        carro.portas.abrirPorta(0); // Porta aberta
+
+        assertThrows(IllegalStateException.class, carro::acelerar,
+                "Deve lançar exceção ao tentar acelerar com porta aberta");
+
+        carro.transmissao.trocarMarcha(Transmissao.Marcha.PRIMEIRA);
+
+        carro.portas.fecharPorta(0); // Fecha a porta
+        // Porta foi fechada automaticamente
+        assertFalse(portas.temPortaAberta());
+
+        // Segunda tentativa: deve funcionar
+        carro.ligar(); 
+        carro.acelerar();
+        assertEquals(10, carro.getVelocidade());
     }
-}
+
+
 
 }

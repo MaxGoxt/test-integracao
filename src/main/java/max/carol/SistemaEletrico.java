@@ -31,12 +31,11 @@ public class SistemaEletrico {
         return estado ? "Bateria em bom estado." : "Bateria descarregada.";
     }
 
-    public void substituirBateria() {
+    public void substituirBateria(String tipoDeBateria, double capacidade, double voltagem) {
+        this.tipoDeBateria = tipoDeBateria;
+        this.capacidade = capacidade;
+        this.voltagem = voltagem;
         System.out.println("Bateria substituída.");
-    }
-
-    public void testarSistema() {
-        System.out.println("Sistema elétrico testado com sucesso.");
     }
 
     // Getters

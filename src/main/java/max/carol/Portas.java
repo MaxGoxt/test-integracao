@@ -1,5 +1,5 @@
 package max.carol;
-
+import java.util.ArrayList;
 import java.util.List;
 
 public class Portas {
@@ -7,42 +7,62 @@ public class Portas {
     private String material;
     private String cor;
     private String tipo;
-    private String estado;
+    private List<String> estadosPortas;
 
     public Portas(
             int quantidade,
             String material,
             String cor,
             String tipo,
-            String estado) {
+            String estado,
+            String estadoInicial) {
         this.quantidade = quantidade;
         this.material = material;
         this.cor = cor;
         this.tipo = tipo;
-        this.estado = estado;
-    }
+        this.estadosPortas = new ArrayList<>();
 
-    public void abrir() {
-        if (estado.equals("fechada")) {
-            estado = "aberta";
-            System.out.println("A porta foi aberta.");
-        } else {
-            System.out.println("A porta já está aberta.");
+        for (int i = 0; i < quantidade; i++) {
+            estadosPortas.add(estadoInicial); // Ex: "fechada"
         }
     }
 
-    public void fechar() {
-        if (estado.equals("aberta")) {
-            estado = "fechada";
-            System.out.println("A porta foi fechada.");
+
+  // Abre uma porta específica
+    public void abrirPorta(int indice) {
+        if (indice < 0 || indice >= quantidade) {
+            throw new IndexOutOfBoundsException("Índice de porta inválido.");
+        }
+        if (estadosPortas.get(indice).equals("fechada")) {
+            estadosPortas.set(indice, "aberta");
+            System.out.println("Porta " + indice + " foi aberta.");
         } else {
-            System.out.println("A porta já está fechada.");
+            System.out.println("Porta " + indice + " já está aberta.");
         }
     }
 
-    public String verificarEstado() {
-        return "A porta está " + estado + ".";
+    // Fecha uma porta específica
+    public void fecharPorta(int indice) {
+        if (indice < 0 || indice >= quantidade) {
+            throw new IndexOutOfBoundsException("Índice de porta inválido.");
+        }
+        if (estadosPortas.get(indice).equals("aberta")) {
+            estadosPortas.set(indice, "fechada");
+            System.out.println("Porta " + indice + " foi fechada.");
+        } else {
+            System.out.println("Porta " + indice + " já está fechada.");
+        }
     }
+
+    public boolean temPortaAberta() {
+    for (String estado : estadosPortas) {
+        if ("aberta".equalsIgnoreCase(estado)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 
     // Métodos auxiliares para testes
 
@@ -94,7 +114,4 @@ public class Portas {
         return tipo;
     }
 
-    public String getEstado() {
-        return estado;
-    }
 }
