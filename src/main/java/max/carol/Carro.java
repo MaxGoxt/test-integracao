@@ -128,117 +128,161 @@ public class Carro {
         this.velocidadeMaxima = 200;
     }
 
+    // public void ligar() {
+
+    //     if (sistemaEletrico == null) {
+    //         throw new NullPointerException("Sistema elétrico não está disponível.");
+    //     }
+    //     if (!sistemaEletrico.isEstadoOk()) {
+    //         throw new IllegalStateException("Bateria está descarregada.");
+    //     }
+
+    //     if (sistemaDeCombustivel == null) {
+    //         throw new NullPointerException("Sistema de combustível não está disponível.");
+    //     }
+
+    //     if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
+    //         throw new IllegalStateException("Tanque de combustível está vazio.");
+    //     }
+
+    //     if (motor == null) {
+    //         throw new NullPointerException("Motor não está disponível.");
+    //     }
+
+    //     if (transmissao == null) {
+    //         throw new NullPointerException("Transmissão não está disponível.");
+    //     }
+
+    //     if (!ligado) {
+    //         ligado = true;
+    //         System.out.println("Carro ligado.");
+    //     } else {
+    //         System.out.println("Carro já está ligado.");
+    //     }
+    // }
+
+    // public String desligar() {
+    //     if (ligado) {
+    //         ligado = false;
+    //         velocidade = 0;
+    //         return "Carro desligado.";
+    //     } else {
+    //         return "Carro já está desligado.";
+    //     }
+    // }
+
+    // public void atualizarQuilometragem(double km) {
+    //     if (km > 0) {
+    //         this.quilometragem += km;
+    //         System.out.println("Quilometragem atualizada para: " + this.quilometragem);
+    //     } else {
+    //         System.out.println("Valor de quilometragem inválido.");
+    //     }
+    // }
+
+    // public String acelerar() {
+
+    //     if (!ligado) {
+    //         return "Carro desligado. Ligue o carro antes de acelerar.";
+    //     }
+
+    //     if (velocidade >= velocidadeMaxima) {
+    //         return "Velocidade máxima atingida. Não é possível acelerar mais.";
+    //     }
+
+    //     if (transmissao == null) {
+    //         return "Transmissão não está disponível. Não é possível acelerar.";
+    //     }
+
+    //     if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
+    //         velocidade += 10; 
+    //         return "Carro acelerando...";
+    //     }
+
+    //     if (transmissao.getTipo() == Tipos.MarchaManual && transmissao.getMarcha() == MarchaManual.N) {
+    //         return "Carro em ponto morto. Mude a marcha para acelerar.";
+    //     }
+
+    //     velocidade += 10; 
+    //     return "Carro acelerando...";
+    // }
+
+    // public String frear() {
+
+    //     if (!ligado) {
+    //         return "Carro desligado.";
+    //     }
+
+    //     if (velocidade <= 0) {
+    //         return "Carro já está parado.";
+    //     }
+
+    //     if (freios == null) {
+    //         return "Sistema de freios não está disponível. Não é possível frear.";
+    //     }
+
+    //     velocidade -= 10; 
+    //     if (velocidade < 0) {
+    //         velocidade = 0; 
+    //     }
+    //     return "Carro freando...";
+    // }
+
+    // public String buzinar() {
+    //     if (!ligado) {
+    //         return "Carro desligado. Ligue o carro para buzinar.";
+    //     }
+    //     return "Buzina acionada!";
+    // }
+
+    // public String getvelocidade() {
+    //     return "Velocidade atual: " + velocidade + " km/h";
+    // }
+
+
+    ////////////////////////////////////////////////////////////////////
+ 
     public void ligar() {
-
-        if (sistemaEletrico == null) {
-            throw new NullPointerException("Sistema elétrico não está disponível.");
+        this.ligado = true;
+    
+        if (motor != null && !motor.isEstado()) {
+            motor.ligar();
         }
-        if (!sistemaEletrico.isEstadoOk()) {
-            throw new IllegalStateException("Bateria está descarregada.");
+    
+        if (painel != null && !painel.isEstado()) {
+            painel.ligarDisplay();
+            painel.atualizarInformacoes("Painel ativo");
         }
-
-        if (sistemaDeCombustivel == null) {
-            throw new NullPointerException("Sistema de combustível não está disponível.");
+    
+        if (sistemaEletrico != null) {
+            sistemaEletrico.testarSistema();
         }
+    
+        System.out.println("Carro ligado.");
+    }
 
-        if (sistemaDeCombustivel.getNivelDeCombustivel() <= 0) {
-            throw new IllegalStateException("Tanque de combustível está vazio.");
+    
+    
+    public void consumir() {
+        if (!ligado || motor == null || !motor.isEstado()) {
+            System.out.println("Carro desligado ou motor inativo.");
+            return;
         }
-
-        if (motor == null) {
-            throw new NullPointerException("Motor não está disponível.");
-        }
-
-        if (transmissao == null) {
-            throw new NullPointerException("Transmissão não está disponível.");
-        }
-
-        if (!ligado) {
-            ligado = true;
-            System.out.println("Carro ligado.");
+    
+        if (sistemaDeCombustivel != null && sistemaDeCombustivel.getNivelDeCombustivel() > 0) {
+            sistemaDeCombustivel.consumir(1); // simula consumo de 1 litro
+            // consumindo 1 litro
+            if (painel != null) {
+                painel.atualizarInformacoes("Acelerando...");
+            }
+            System.out.println("Acelerando...");
         } else {
-            System.out.println("Carro já está ligado.");
+            if (painel != null) {
+                painel.atualizarInformacoes("Sem combustível.");
+            }
+            System.out.println("Não há combustível.");
         }
     }
-
-    public String desligar() {
-        if (ligado) {
-            ligado = false;
-            velocidade = 0;
-            return "Carro desligado.";
-        } else {
-            return "Carro já está desligado.";
-        }
-    }
-
-    public void atualizarQuilometragem(double km) {
-        if (km > 0) {
-            this.quilometragem += km;
-            System.out.println("Quilometragem atualizada para: " + this.quilometragem);
-        } else {
-            System.out.println("Valor de quilometragem inválido.");
-        }
-    }
-
-    public String acelerar() {
-
-        if (!ligado) {
-            return "Carro desligado. Ligue o carro antes de acelerar.";
-        }
-
-        if (velocidade >= velocidadeMaxima) {
-            return "Velocidade máxima atingida. Não é possível acelerar mais.";
-        }
-
-        if (transmissao == null) {
-            return "Transmissão não está disponível. Não é possível acelerar.";
-        }
-
-        if (transmissao.getTipo() == Tipos.MarchaAutomatica) {
-            velocidade += 10; 
-            return "Carro acelerando...";
-        }
-
-        if (transmissao.getTipo() == Tipos.MarchaManual && transmissao.getMarcha() == MarchaManual.N) {
-            return "Carro em ponto morto. Mude a marcha para acelerar.";
-        }
-
-        velocidade += 10; 
-        return "Carro acelerando...";
-    }
-
-    public String frear() {
-
-        if (!ligado) {
-            return "Carro desligado.";
-        }
-
-        if (velocidade <= 0) {
-            return "Carro já está parado.";
-        }
-
-        if (freios == null) {
-            return "Sistema de freios não está disponível. Não é possível frear.";
-        }
-
-        velocidade -= 10; 
-        if (velocidade < 0) {
-            velocidade = 0; 
-        }
-        return "Carro freando...";
-    }
-
-    public String buzinar() {
-        if (!ligado) {
-            return "Carro desligado. Ligue o carro para buzinar.";
-        }
-        return "Buzina acionada!";
-    }
-
-    public String getvelocidade() {
-        return "Velocidade atual: " + velocidade + " km/h";
-    }
-
  
 
     public String getModelo() {
@@ -273,7 +317,10 @@ public class Carro {
         this.bancos = bancos;
     }
 
-   
+    public Painel getPainel() {
+        return painel;
+    }
+    
 
     @Override
     public String toString() {

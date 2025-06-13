@@ -3,7 +3,9 @@ package max.carol;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Duration;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -187,4 +189,59 @@ public class CarroTest {
         Transmissao transmissao = new Transmissao(Transmissao.Tipos.MarchaManual, 5, "Aço", "ZF");
         assertThrows(IllegalArgumentException.class, () -> transmissao.trocarMarcha(-5));
     }
+
+// Deve Ativar Motor Painel E Sistema Eletrico
+    @Test
+    void ligarCarro() {
+        // Arrange
+        SistemaEletrico sistemaEletrico = new SistemaEletrico(true); // Bateria ok
+        Motor motor = new Motor("V8", 300, 4.0, "Chevrolet", false);
+        Painel painel = new Painel("Digital", "Inicializando...", true, "Bosch", false);
+
+        // Act
+        carro.ligar();
+        motor.ligar(); // simulando o motor sendo ativado pelo carro
+        painel.ligarDisplay();
+        painel.atualizarInformacoes("Motor ligado");
+
+        // Assert
+        assertAll("Verificação integrada dos sistemas ao ligar",
+            () -> assertTrue(motor.isEstado(), "Motor deveria estar ligado"),
+            () -> assertTrue(sistemaEletrico.isEstadoOk(), "Sistema elétrico deveria estar ativo"),
+            () -> assertEquals("Motor ligado", painel.getDisplay(), "Painel deveria mostrar mensagem 'Motor ligado'"),
+            () -> assertTrue(carro.isLigado(), "Carro deveria estar ligado")
+        );
+    }
+
+
+    // _Deve Consumir Combustivel E Verificar Motor Transmissao
+     @Test
+    void acelerar() {
+      
+        // Act: ligar o carro e preparar o sistema para aceleração
+        carro.ligar(); // Deve ligar o motor e os demais sistemas automaticamente
+        transmissao.trocarMarcha(1); // Troca para marcha 1
+
+        // Estado inicial
+        double nivelInicial = combustivel.getNivelDeCombustivel();
+        boolean motorLigado = motor.isEstado();
+        Object marchaAtual = transmissao.getMarcha();
+        List<String> mensagensAntes = carro.getPainel().getMensagens();
+
+        // Acelerar
+        carro.consumir();
+
+        // Assert: verificação integrada dos 3 sistemas
+        assertAll("Verificando integração após aceleração",
+            () -> assertTrue(motor.isEstado(), "Motor deve continuar ligado após aceleração"),
+            () -> assertTrue(combustivel.getNivelDeCombustivel() < nivelInicial, "Combustível deve ter sido consumido"),
+            () -> assertEquals(Transmissao.MarchaManual.M1, marchaAtual, "Marcha deve permanecer em M1"),
+            () -> assertTrue(carro.getPainel().getMensagens().contains("Acelerando..."), "Painel deve exibir 'Acelerando...'")
+        );
+    }
+
+
+
+
+
 }

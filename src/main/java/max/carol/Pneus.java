@@ -48,6 +48,19 @@ public class Pneus {
         return "Pressão ajustada com sucesso!";
     }
 
+    public void ajustarPressaoParaCurva(int angulo) {
+        if (posicao == posicaoPneu.DIANTEIRO_ESQUERDO) {
+            pressao += 0.5;
+        } else if (posicao == posicaoPneu.DIANTEIRO_DIREITO) {
+            pressao -= 0.5;
+        }
+        // Traseiros mantêm a pressão
+    }
+
+    public double getPressaoAtual() {
+        return pressao;
+    }
+
     public void substituir() {
         System.out.println("O pneu " + marca + " foi substituído.");
     }
@@ -73,7 +86,6 @@ public class Pneus {
     }
 
     // Getters
-
     public String getTamanho() {
         return tamanho;
     }

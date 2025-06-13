@@ -28,6 +28,17 @@ public class SistemaDeCombustivel {
         return nivelDeCombustivel;
     }
 
+    public void consumir(double quantidade) {
+        if (quantidade <= 0) {
+            throw new IllegalArgumentException("Quantidade de consumo deve ser maior que zero.");
+        }
+        if (nivelDeCombustivel - quantidade >= 0) {
+            nivelDeCombustivel -= quantidade;
+        } else {
+            throw new IllegalStateException("Combustível insuficiente para consumo.");
+        }
+    }
+
     public void abastecer(double quantidade) {
         if (quantidade <= 0) {
             System.out.println("Quantidade inválida para abastecimento.");

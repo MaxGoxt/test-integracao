@@ -1,5 +1,6 @@
 package max.carol;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Painel {
@@ -8,6 +9,8 @@ public class Painel {
     private boolean controle;
     private String marca;
     private boolean estado;
+    private Painel painel;
+    private List<String> mensagens = new ArrayList<>(); // <== ADICIONADO
 
     public Painel(
             String tipo,
@@ -35,10 +38,15 @@ public class Painel {
     public void atualizarInformacoes(String info) {
         if (estado) {
             display = info;
+            mensagens.add(info); // <== ADICIONADO
             System.out.println("As informações do painel " + marca + " foram atualizadas para: " + display);
         } else {
             System.out.println("O display está desligado. Não é possível atualizar as informações.");
         }
+    }
+
+    public List<String> getMensagens() {
+        return mensagens;
     }
 
     // Métodos auxiliares para testes
@@ -59,6 +67,8 @@ public class Painel {
     }
 
     // Getters
+
+    
 
     public String getTipo() {
         return tipo;
