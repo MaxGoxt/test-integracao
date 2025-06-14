@@ -120,7 +120,7 @@ public class CarroTest {
                                                 "Painel deve exibir 'Acelerando...'"));
         }
 
-       // verificarVelocidadeMaximaPorMarcha
+        // verificarVelocidadeMaximaPorMarcha
         @Test
         void verificar_Velocidade_Maxima_Por_Marcha() {
                 // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
@@ -174,7 +174,7 @@ public class CarroTest {
                 }
         }
 
-        //portaAbertaDeveImpedirAceleracaoEAposFecharPermitir
+        // portaAbertaDeveImpedirAceleracaoEAposFecharPermitir
         @Test
         void porta_Aberta_Deve_Impedir_Aceleracao() {
                 carro.portas.abrirPorta(0); // Porta aberta
@@ -194,7 +194,7 @@ public class CarroTest {
                 assertEquals(10, carro.getVelocidade());
         }
 
-        //bateriaQuaseFracaAindaImpedeLigacaoDasLuzes
+        // bateriaQuaseFracaAindaImpedeLigacaoDasLuzes
         @Test
         void bateria_fraca_desligar_lizes() {
                 carro.getSistemaEletrico().setNivelCarga(25);
@@ -206,6 +206,22 @@ public class CarroTest {
                                 List.of("Erro: Bateria insuficiente"),
                                 carro.getPainel().getMensagens());
 
+        }
+
+        // deveEmitirAlertaSeDesligarCarroComFaroisLigados
+        @Test
+        void Alerta_Se_Desligar_Carro_Com_Farois_Ligados() {
+                // Arrange
+                carro.ligar();
+                carro.luzes.ligar();
+
+                // Act
+                carro.desligar();
+                // Assert
+                assertAll("Verificando alerta de faróis ligados ao desligar carro",
+                                () -> assertTrue(carro.luzes.areFaroisAcesos(), "Faróis ainda devem estar acesos"),
+                                () -> assertTrue(carro.getPainel().getMensagens().contains("Alerta: Faróis ligados"),
+                                                "Painel deve exibir alerta de faróis ligados"));
         }
 
 }

@@ -10,7 +10,6 @@ public class Luzes {
     private String luzDeFreioLigada;
     private boolean faroisAcesos;
 
-
     public Luzes(
             String tipo,
             int intensidade,
@@ -24,15 +23,18 @@ public class Luzes {
         this.estado = estado;
         this.modelo = modelo;
         this.luzDeFreioLigada = luzDeFreioLigada;
+        this.faroisAcesos = false; 
     }
 
     public String ligar() {
         estado = true;
+        faroisAcesos = true;
         return "Luzes ligadas.";
     }
 
     public String desligar() {
         estado = false;
+        faroisAcesos = false;
         return "Luzes desligadas.";
     }
 
@@ -46,8 +48,8 @@ public class Luzes {
     }
 
     public boolean areFaroisAcesos() {
-    return this.faroisAcesos;
-}
+        return this.faroisAcesos;
+    }
 
     // Getters
 

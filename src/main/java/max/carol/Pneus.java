@@ -85,6 +85,10 @@ public class Pneus {
         throw new IllegalStateException("Falha no pneu detectada!");
     }
 
+    public boolean estaFurado() {
+    return this.pressao < 20;
+}
+
     // Getters
     public String getTamanho() {
         return tamanho;

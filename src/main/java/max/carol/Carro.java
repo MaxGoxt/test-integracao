@@ -255,10 +255,7 @@ public class Carro {
                 painel.ligarDisplay(); // liga o display para mostrar a mensagem
                 painel.atualizarInformacoes("Erro: Bateria insuficiente");
             }
-            
-            if (luzes != null) {
-                luzes.desligar(); // adiciona esse método em Luzes se ainda não existir
-            }
+
             this.ligado = false;
             return;
         }
@@ -285,6 +282,23 @@ public class Carro {
         this.ligado = true;
         System.out.println("Carro ligado.");
     }
+
+   public String desligar() {
+    if (ligado) {
+        ligado = false;
+        velocidade = 0;
+
+        if (luzes != null && luzes.areFaroisAcesos() && painel != null) {
+            painel.atualizarInformacoes("Alerta: Faróis ligados");
+        }
+
+        return "Carro desligado.";
+        
+    } else {
+        return "Carro já está desligado.";
+    }
+}
+
 
     public void acelerar() {
         if (!this.ligado || this.motor == null || !this.motor.isLigado()) {
