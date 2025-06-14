@@ -1,5 +1,7 @@
 package max.carol;
 
+import java.util.Map;
+
 public class Transmissao {
 
     public enum Tipos {
@@ -32,6 +34,20 @@ public class Transmissao {
     private boolean estado;
     private MarchaManual marchaManual;
     private MarchaAutomatica marchaAutomatica;
+    final public Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
+            Marcha.PRIMEIRA, 1,
+            Marcha.SEGUNDA, 2,
+            Marcha.TERCEIRA, 3,
+            Marcha.QUARTA, 4,
+            Marcha.QUINTA, 5);
+
+    // Limites máximos de velocidade para cada marcha (exemplo hipotético)
+    final public Map<Marcha, Integer> velocidadeEsperada = Map.of(
+            Marcha.PRIMEIRA, 20,
+            Marcha.SEGUNDA, 40,
+            Marcha.TERCEIRA, 60,
+            Marcha.QUARTA, 90,
+            Marcha.QUINTA, 120);
 
     public Transmissao(Tipos tipo, int numeroDeMarchas, String material, String marca) {
         this(tipo, numeroDeMarchas, material, marca, true);
@@ -54,7 +70,8 @@ public class Transmissao {
     // Novo método para trocar marcha usando enum Marcha
     public void trocarMarcha(Marcha marcha) {
         if (!estado) {
-            throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
+            throw new IllegalStateException(
+                    "Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
         if (tipo != Tipos.MarchaManual) {
             throw new UnsupportedOperationException("Apenas transmissão manual suportada para troca por enum Marcha");
@@ -93,7 +110,8 @@ public class Transmissao {
     // Mantendo o método original para compatibilidade
     public String trocarMarcha(int marcha) {
         if (!estado) {
-            throw new IllegalStateException("Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
+            throw new IllegalStateException(
+                    "Sistema de transmissão fora de funcionamento. Não é possível trocar a marcha.");
         }
 
         if (marcha >= 1 && marcha <= numeroDeMarchas) {
@@ -118,7 +136,8 @@ public class Transmissao {
             System.out.println("Marcha trocada para: " + marcha);
             return "Marcha trocada para: " + marcha;
         } else {
-            throw new IllegalArgumentException("Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
+            throw new IllegalArgumentException(
+                    "Marcha inválida. O número de marchas disponíveis é: " + numeroDeMarchas);
         }
     }
 

@@ -125,34 +125,19 @@ public class CarroTest {
         void verificar_Velocidade_Maxima_Por_Marcha() {
                 // TODO: Ajustar o teste para verificar a velocidade máxima por marcha
                 // Map do enum Marcha para número da marcha
-                Map<Marcha, Integer> mapaMarchaParaInt = Map.of(
-                                Marcha.PRIMEIRA, 1,
-                                Marcha.SEGUNDA, 2,
-                                Marcha.TERCEIRA, 3,
-                                Marcha.QUARTA, 4,
-                                Marcha.QUINTA, 5);
-
-                // Limites máximos de velocidade para cada marcha (exemplo hipotético)
-                Map<Marcha, Integer> velocidadeEsperada = Map.of(
-                                Marcha.PRIMEIRA, 20,
-                                Marcha.SEGUNDA, 40,
-                                Marcha.TERCEIRA, 60,
-                                Marcha.QUARTA, 90,
-                                Marcha.QUINTA, 120);
-
                 // Ligar o carro para preparar o sistemaF
                 carro.ligar();
 
                 List<String> mensagensEsperadas = new ArrayList<>();
 
                 for (Marcha marchaEnum : Marcha.values()) {
-                        int numeroMarcha = mapaMarchaParaInt.get(marchaEnum);
+                        int numeroMarcha = carro.transmissao.mapaMarchaParaInt.get(marchaEnum);
 
                         // Troca a marcha no sistema
                         transmissao.trocarMarcha(numeroMarcha);
 
                         // Acelera até atingir a velocidade máxima da marcha
-                        while (carro.getVelocidade() < velocidadeEsperada.get(marchaEnum)) {
+                        while (carro.getVelocidade() < carro.transmissao.velocidadeEsperada.get(marchaEnum)) {
                                 carro.acelerar();
                                 // Adiciona mensagem no painel
                                 painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu "
@@ -160,10 +145,10 @@ public class CarroTest {
                         }
 
                         // Verifica se a velocidade atingiu a esperada para a marcha atual
-                        assertEquals(velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
+                        assertEquals(carro.transmissao.velocidadeEsperada.get(marchaEnum), carro.getVelocidade(),
                                         "Velocidade máxima na " + marchaEnum.name().toLowerCase()
                                                         + " marcha deveria ser " +
-                                                        velocidadeEsperada.get(marchaEnum));
+                                                        carro.transmissao.velocidadeEsperada.get(marchaEnum));
                 }
 
                 // Verifica se as mensagens no painel correspondem ao que foi esperado
