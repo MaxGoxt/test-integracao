@@ -140,7 +140,7 @@ public class CarroTest {
                         while (carro.getVelocidade() < carro.transmissao.velocidadeEsperada.get(marchaEnum)) {
                                 carro.acelerar();
                                 // Adiciona mensagem no painel
-                                painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu "
+                                carro.painel.adicionarMensagem("Marcha " + marchaEnum.name() + " atingiu "
                                                 + carro.getVelocidade() + "km/h");
                         }
 
@@ -152,7 +152,7 @@ public class CarroTest {
                 }
 
                 // Verifica se as mensagens no painel correspondem ao que foi esperado
-                List<String> mensagensPainel = painel.getHistoricoDeVelocidade();
+                List<String> mensagensPainel = carro.painel.getHistoricoDeVelocidade();
                 for (String mensagemEsperada : mensagensEsperadas) {
                         assertTrue(mensagensPainel.contains(mensagemEsperada),
                                         "Painel deve conter a mensagem: " + mensagemEsperada);
@@ -181,7 +181,7 @@ public class CarroTest {
 
         // bateriaQuaseFracaAindaImpedeLigacaoDasLuzes
         @Test
-        void bateria_fraca_desligar_lizes() {
+        void bateria_fraca_desligar_luzes() {
                 carro.getSistemaEletrico().setNivelCarga(25);
                 carro.ligar();
 
